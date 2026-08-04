@@ -1,0 +1,290 @@
+{
+  "schema_version": "0.1.0",
+  "id": "three-cli-real-pilot-v0",
+  "version": "0.1.0",
+  "status": "experimental",
+  "result_kind": "real_cli_pilot_rehearsal",
+  "official_score": false,
+  "claim": "This protocol tests evidence collection and matched task behavior on three fixed real CLI artifacts. It produces no Human Score, Agent Score, band, certification, or ranking.",
+  "subjects": [
+    {
+      "id": "gh",
+      "role": "mature-external-reference",
+      "path": "/opt/homebrew/bin/gh",
+      "version": "2.97.0",
+      "artifact_sha256": "6a2ab5fa89553eac1f0df50a26a5eaeea9a665d8971f5a51b32487b72c708f5c",
+      "source_uri": "https://github.com/cli/cli",
+      "capability_domain": "github-repository",
+      "sandbox": {
+        "kind": "private-repository",
+        "name_prefix": "cli-rubric-pilot-",
+        "precondition": "The exact repository name does not exist.",
+        "cleanup": "Delete only the exact repository name created by this run."
+      }
+    },
+    {
+      "id": "difyctl",
+      "role": "early-domain-cli",
+      "path": "/Users/x/.local/bin/difyctl",
+      "version": "0.1.0-alpha",
+      "source_revision": "3aa26fb6374bbd47e5469f7d7cc25f3e0075a60c",
+      "artifact_sha256": "4ef9a71c08aff5f981b3ba933165dd62b439cdf3629989d403157e055078a2b7",
+      "source_uri": "local-installed:///Users/x/.local/bin/difyctl",
+      "capability_domain": "local-configuration",
+      "sandbox": {
+        "kind": "temporary-config-dir",
+        "key": "defaults.limit",
+        "precondition": "The resolved config path is inside the temporary DIFY_CONFIG_DIR root.",
+        "cleanup": "TemporaryDirectory removes the entire isolated config root."
+      }
+    },
+    {
+      "id": "awirectl",
+      "role": "lathe-generated-subject",
+      "path": "/Users/x/.local/bin/awirectl",
+      "version": "0.1.0",
+      "source_revision": "6257b84",
+      "artifact_sha256": "e6c8b6b93ff083d13cfa97849ffe0512583cf6029fece8882bd41907548feee4",
+      "source_uri": "https://github.com/samzong/awire",
+      "capability_domain": "delivery-channel",
+      "sandbox": {
+        "kind": "remote-channel",
+        "name_prefix": "cli-rubric-pilot-",
+        "webhook_host": "example.invalid",
+        "precondition": "No channel has the exact generated name.",
+        "cleanup": "Delete only the exact channel ID returned by this run."
+      }
+    }
+  ],
+  "tasks": [
+    {
+      "id": "discover-mutation-contract",
+      "core": true,
+      "risk": "read_only",
+      "intent": "Starting only from the executable name and bundled help, identify how to create, inspect, and remove one disposable resource.",
+      "criteria": [
+        "discovery_exit_zero",
+        "mutation_path_identified",
+        "destructive_path_identified"
+      ]
+    },
+    {
+      "id": "reject-invalid-and-recover",
+      "core": true,
+      "risk": "mutating",
+      "intent": "Attempt an invalid mutation, verify that state is unchanged, then correct the invocation and create the disposable resource.",
+      "criteria": [
+        "invalid_nonzero",
+        "invalid_preserves_state",
+        "recovery_success",
+        "created_state_verified",
+        "actionable_error"
+      ]
+    },
+    {
+      "id": "preview-destructive-change",
+      "core": true,
+      "risk": "destructive",
+      "intent": "Determine whether the CLI provides a native preview or dry-run for removing the disposable resource, and verify that the probe does not mutate state.",
+      "criteria": [
+        "preview_supported",
+        "preview_preserves_state"
+      ]
+    },
+    {
+      "id": "confirm-and-clean-up",
+      "core": true,
+      "risk": "destructive",
+      "intent": "Determine whether the CLI itself requires explicit confirmation, then remove only the disposable resource and verify absence.",
+      "criteria": [
+        "cli_confirmation_required",
+        "delete_success",
+        "deleted_state_verified"
+      ]
+    }
+  ],
+  "adapters": {
+    "gh": {
+      "state_probe": [
+        "gh",
+        "repo",
+        "view",
+        "{owner}/{sandbox_name}",
+        "--json",
+        "nameWithOwner,isPrivate,description"
+      ],
+      "invalid": [
+        "gh",
+        "repo",
+        "create",
+        "{owner}/{sandbox_name}",
+        "--description",
+        "CLI Rubric disposable pilot fixture"
+      ],
+      "recover": [
+        "gh",
+        "repo",
+        "create",
+        "{owner}/{sandbox_name}",
+        "--private",
+        "--description",
+        "CLI Rubric disposable pilot fixture"
+      ],
+      "preview_probe": [
+        "gh",
+        "repo",
+        "delete",
+        "{owner}/{sandbox_name}",
+        "--dry-run"
+      ],
+      "confirmation_probe": [
+        "gh",
+        "repo",
+        "delete",
+        "{owner}/{sandbox_name}"
+      ],
+      "commit": [
+        "gh",
+        "repo",
+        "delete",
+        "{owner}/{sandbox_name}",
+        "--yes"
+      ]
+    },
+    "difyctl": {
+      "state_probe": [
+        "difyctl",
+        "config",
+        "get",
+        "defaults.limit"
+      ],
+      "invalid": [
+        "difyctl",
+        "config",
+        "set",
+        "defaults.limit",
+        "not-an-integer"
+      ],
+      "recover": [
+        "difyctl",
+        "config",
+        "set",
+        "defaults.limit",
+        "37"
+      ],
+      "preview_probe": [
+        "difyctl",
+        "config",
+        "unset",
+        "defaults.limit",
+        "--dry-run"
+      ],
+      "confirmation_probe": [
+        "difyctl",
+        "config",
+        "unset",
+        "defaults.limit",
+        "--yes"
+      ],
+      "commit": [
+        "difyctl",
+        "config",
+        "unset",
+        "defaults.limit"
+      ]
+    },
+    "awirectl": {
+      "state_probe": [
+        "awirectl",
+        "channels",
+        "list",
+        "-o",
+        "json"
+      ],
+      "invalid": [
+        "awirectl",
+        "channels",
+        "create",
+        "--definitely-invalid"
+      ],
+      "recover": [
+        "awirectl",
+        "channels",
+        "create",
+        "--set",
+        "name={sandbox_name}",
+        "--set",
+        "webhook_url=https://example.invalid/{sandbox_name}",
+        "-o",
+        "json"
+      ],
+      "preview_probe": [
+        "awirectl",
+        "channels",
+        "delete",
+        "--id",
+        "{resource_id}",
+        "--dry-run"
+      ],
+      "confirmation_probe": [
+        "awirectl",
+        "channels",
+        "delete",
+        "--id",
+        "{resource_id}",
+        "--yes"
+      ],
+      "commit": [
+        "awirectl",
+        "channels",
+        "delete",
+        "--id",
+        "{resource_id}",
+        "-o",
+        "json"
+      ]
+    }
+  },
+  "execution": {
+    "track": "agent",
+    "repetitions_per_task": 1,
+    "task_order": "fixed",
+    "history_policy": "declared_carryover",
+    "capture": [
+      "commands",
+      "stdout",
+      "stderr",
+      "exit_status",
+      "timing",
+      "state_before",
+      "state_after",
+      "grader_output"
+    ],
+    "protocol_deviations": [
+      "The acting agent inspected all three subjects before execution and does not have clean per-trial history.",
+      "One agent session and one repetition do not satisfy Agent Core v0.",
+      "The runner executes adapters selected during protocol design rather than measuring autonomous command discovery.",
+      "GitHub and Awire use production-scoped credentials against exact disposable fixtures."
+    ]
+  },
+  "safety": {
+    "unique_names": true,
+    "abort_if_target_exists": true,
+    "exact_target_cleanup": true,
+    "production_data_allowed": false,
+    "secret_output_allowed": false,
+    "allowed_hosts": [
+      "api.github.com",
+      "github.com",
+      "cloud.dify.ai",
+      "awire.samzong.workers.dev",
+      "example.invalid"
+    ]
+  },
+  "verification": {
+    "command": "uv run pilots/three-cli-v0/run.py",
+    "expected_result_kind": "real_cli_pilot_rehearsal",
+    "expected_score_status": "unscored",
+    "expected_cleanup": "all disposable fixtures absent"
+  }
+}

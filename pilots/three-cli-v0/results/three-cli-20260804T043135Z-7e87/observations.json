@@ -1,0 +1,1798 @@
+{
+  "comparison": {
+    "reason": "Subjects use matched task archetypes across different capability domains.",
+    "status": "not_directly_comparable"
+  },
+  "completed_at": "2026-08-04T04:32:14.751003Z",
+  "created_at": "2026-08-04T04:31:35.003040Z",
+  "official_score": false,
+  "profile_sha256": "70f6ef25674f4ce80b75dd6f4b5fc61425cfd8ccbea1e102c30bd7ce95a5bef2",
+  "protocol_sha256": "f13ff7ee81ea7f663bcd5c0ec40d3bfae17600e1b8bd0344526dd268676d8add",
+  "result_kind": "real_cli_pilot_rehearsal",
+  "run_id": "three-cli-20260804T043135Z-7e87",
+  "subjects": {
+    "awirectl": {
+      "cleanup": {
+        "attempted": true,
+        "verified_absent": true
+      },
+      "commands": [
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "list",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 1072,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 1,
+          "started_at": "2026-08-04T04:31:53.465677Z",
+          "state_after": {
+            "matching_channels": []
+          },
+          "state_before": {
+            "matching_channels": []
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"matching_channels\": []}",
+          "step_id": "precondition-state-sample-1",
+          "task_id": "discover-mutation-contract",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "list",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 700,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 2,
+          "started_at": "2026-08-04T04:31:54.794017Z",
+          "state_after": {
+            "matching_channels": []
+          },
+          "state_before": {
+            "matching_channels": []
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"matching_channels\": []}",
+          "step_id": "precondition-state-sample-2",
+          "task_id": "discover-mutation-contract",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "list",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 764,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 3,
+          "started_at": "2026-08-04T04:31:55.749426Z",
+          "state_after": {
+            "matching_channels": []
+          },
+          "state_before": {
+            "matching_channels": []
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"matching_channels\": []}",
+          "step_id": "precondition-state-sample-3",
+          "task_id": "discover-mutation-contract",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "commands",
+            "show",
+            "channels",
+            "create",
+            "--json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 12,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 4,
+          "started_at": "2026-08-04T04:31:56.513410Z",
+          "state_after": null,
+          "state_before": null,
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"auth\": {\"required\": true}, \"body\": {\"media_type\": \"application/json\", \"required\": true, \"schema\": {\"properties\": {\"name\": {\"type\": \"string\"}, \"sign_secret\": \"[REDACTED]\", \"webhook_url\": {\"type\": \"string\"}}, \"type\": \"object\"}}, \"deprecated\": false, \"flags\": [], \"group\": \"Channels\", \"hidden\": false, \"http\": {\"method\": \"POST\", \"path_template\": \"/api/v1/channels\"}, \"operation_id\": \"createChannel\", \"output\": {}, \"path\": [\"channels\", \"create\"], \"service\": \"awire\", \"summary\": \"Create a delivery channel.\", \"use\": \"create\"}",
+          "step_id": "create-contract",
+          "task_id": "discover-mutation-contract",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "commands",
+            "show",
+            "channels",
+            "delete",
+            "--json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 7,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 5,
+          "started_at": "2026-08-04T04:31:56.525710Z",
+          "state_after": null,
+          "state_before": null,
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"auth\": {\"required\": true}, \"deprecated\": false, \"example\": \"awirectl channels delete --id 2b2ed599-697c-4e83-93f4-92f18f5254e9 -o json\\n\", \"examples\": [{\"command\": \"awirectl channels delete --id 2b2ed599-697c-4e83-93f4-92f18f5254e9 -o json\\n\"}], \"flags\": [{\"deprecated\": false, \"flag\": \"id\", \"help\": \"id (path, required)\", \"location\": \"path\", \"name\": \"id\", \"required\": true, \"type\": \"string\"}], \"group\": \"Channels\", \"hidden\": false, \"http\": {\"method\": \"DELETE\", \"path_template\": \"/api/v1/channels/{id}\"}, \"known_errors\": [{\"cause\": \"Channel id does not exist\", \"status\": 404}, {\"cause\": \"Channel still referenced by one or more repos (response includes repos[])\", \"status\": 409}], \"notes\": [\"Channel must have zero attached repos before deletion.\"], \"operation_id\": \"deleteChannel\", \"output\": {\"response_media_type\": \"application/json\"}, \"path\": [\"channels\", \"delete\"], \"service\": \"awire\", \"summary\": \"Delete an unused delivery channel.\", \"use\": \"delete\"}",
+          "step_id": "delete-contract",
+          "task_id": "discover-mutation-contract",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "list",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 695,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 6,
+          "started_at": "2026-08-04T04:31:56.533135Z",
+          "state_after": {
+            "matching_channels": []
+          },
+          "state_before": {
+            "matching_channels": []
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"matching_channels\": []}",
+          "step_id": "state-before-invalid-sample-1",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "list",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 683,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 7,
+          "started_at": "2026-08-04T04:31:57.479111Z",
+          "state_after": {
+            "matching_channels": []
+          },
+          "state_before": {
+            "matching_channels": []
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"matching_channels\": []}",
+          "step_id": "state-before-invalid-sample-2",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "list",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 782,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 8,
+          "started_at": "2026-08-04T04:31:58.417700Z",
+          "state_after": {
+            "matching_channels": []
+          },
+          "state_before": {
+            "matching_channels": []
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"matching_channels\": []}",
+          "step_id": "state-before-invalid-sample-3",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "create",
+            "--definitely-invalid"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 9,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 9,
+          "started_at": "2026-08-04T04:31:59.199988Z",
+          "state_after": {
+            "matching_channels": []
+          },
+          "state_before": {
+            "matching_channels": []
+          },
+          "state_changed": false,
+          "stderr": "Error: unknown flag: --definitely-invalid\n",
+          "stdout": "",
+          "step_id": "invalid-create",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "list",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 884,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 10,
+          "started_at": "2026-08-04T04:31:59.209448Z",
+          "state_after": {
+            "matching_channels": []
+          },
+          "state_before": {
+            "matching_channels": []
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"matching_channels\": []}",
+          "step_id": "state-after-invalid-sample-1",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "list",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 704,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 11,
+          "started_at": "2026-08-04T04:32:00.348654Z",
+          "state_after": {
+            "matching_channels": []
+          },
+          "state_before": {
+            "matching_channels": []
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"matching_channels\": []}",
+          "step_id": "state-after-invalid-sample-2",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "list",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 726,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 12,
+          "started_at": "2026-08-04T04:32:01.306738Z",
+          "state_after": {
+            "matching_channels": []
+          },
+          "state_before": {
+            "matching_channels": []
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"matching_channels\": []}",
+          "step_id": "state-after-invalid-sample-3",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "create",
+            "--set",
+            "name=cli-rubric-pilot-20260804-5b6c05",
+            "--set",
+            "webhook_url=https://example.invalid/cli-rubric-pilot-20260804-5b6c05",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 1105,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 13,
+          "started_at": "2026-08-04T04:32:02.033353Z",
+          "state_after": {
+            "matching_channels": [
+              {
+                "id": "20f66f4b-4087-4e37-80c2-b25efd9da092",
+                "name": "cli-rubric-pilot-20260804-5b6c05",
+                "webhook_url": "https://example.invalid/cli-rubric-pilot-20260804-5b6c05"
+              }
+            ]
+          },
+          "state_before": {
+            "matching_channels": []
+          },
+          "state_changed": true,
+          "stderr": "",
+          "stdout": "{\"channel\": {\"created_at\": \"2026-08-04T04:32:00.646Z\", \"id\": \"20f66f4b-4087-4e37-80c2-b25efd9da092\", \"kind\": \"feishu\", \"name\": \"cli-rubric-pilot-20260804-5b6c05\", \"updated_at\": \"2026-08-04T04:32:00.646Z\", \"webhook_url\": \"https://example.invalid/cli-rubric-pilot-20260804-5b6c05\"}}",
+          "step_id": "recover-create",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "get",
+            "--id",
+            "20f66f4b-4087-4e37-80c2-b25efd9da092",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 630,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 14,
+          "started_at": "2026-08-04T04:32:03.138345Z",
+          "state_after": {
+            "matching_channels": [
+              {
+                "id": "20f66f4b-4087-4e37-80c2-b25efd9da092",
+                "name": "cli-rubric-pilot-20260804-5b6c05",
+                "webhook_url": "https://example.invalid/cli-rubric-pilot-20260804-5b6c05"
+              }
+            ]
+          },
+          "state_before": {
+            "matching_channels": [
+              {
+                "id": "20f66f4b-4087-4e37-80c2-b25efd9da092",
+                "name": "cli-rubric-pilot-20260804-5b6c05",
+                "webhook_url": "https://example.invalid/cli-rubric-pilot-20260804-5b6c05"
+              }
+            ]
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"matching_channels\": [{\"id\": \"20f66f4b-4087-4e37-80c2-b25efd9da092\", \"name\": \"cli-rubric-pilot-20260804-5b6c05\", \"webhook_url\": \"https://example.invalid/cli-rubric-pilot-20260804-5b6c05\"}]}",
+          "step_id": "state-after-recovery-sample-1",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "delete",
+            "--id",
+            "20f66f4b-4087-4e37-80c2-b25efd9da092",
+            "--dry-run"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 9,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 15,
+          "started_at": "2026-08-04T04:32:03.768740Z",
+          "state_after": {
+            "matching_channels": [
+              {
+                "id": "20f66f4b-4087-4e37-80c2-b25efd9da092",
+                "name": "cli-rubric-pilot-20260804-5b6c05",
+                "webhook_url": "https://example.invalid/cli-rubric-pilot-20260804-5b6c05"
+              }
+            ]
+          },
+          "state_before": {
+            "matching_channels": [
+              {
+                "id": "20f66f4b-4087-4e37-80c2-b25efd9da092",
+                "name": "cli-rubric-pilot-20260804-5b6c05",
+                "webhook_url": "https://example.invalid/cli-rubric-pilot-20260804-5b6c05"
+              }
+            ]
+          },
+          "state_changed": false,
+          "stderr": "Error: unknown flag: --dry-run\n",
+          "stdout": "",
+          "step_id": "preview-probe",
+          "task_id": "preview-destructive-change",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "get",
+            "--id",
+            "20f66f4b-4087-4e37-80c2-b25efd9da092",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 658,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 16,
+          "started_at": "2026-08-04T04:32:03.777544Z",
+          "state_after": {
+            "matching_channels": [
+              {
+                "id": "20f66f4b-4087-4e37-80c2-b25efd9da092",
+                "name": "cli-rubric-pilot-20260804-5b6c05",
+                "webhook_url": "https://example.invalid/cli-rubric-pilot-20260804-5b6c05"
+              }
+            ]
+          },
+          "state_before": {
+            "matching_channels": [
+              {
+                "id": "20f66f4b-4087-4e37-80c2-b25efd9da092",
+                "name": "cli-rubric-pilot-20260804-5b6c05",
+                "webhook_url": "https://example.invalid/cli-rubric-pilot-20260804-5b6c05"
+              }
+            ]
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"matching_channels\": [{\"id\": \"20f66f4b-4087-4e37-80c2-b25efd9da092\", \"name\": \"cli-rubric-pilot-20260804-5b6c05\", \"webhook_url\": \"https://example.invalid/cli-rubric-pilot-20260804-5b6c05\"}]}",
+          "step_id": "state-after-preview-sample-1",
+          "task_id": "preview-destructive-change",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "delete",
+            "--id",
+            "20f66f4b-4087-4e37-80c2-b25efd9da092",
+            "--yes"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 7,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 17,
+          "started_at": "2026-08-04T04:32:04.435621Z",
+          "state_after": {
+            "matching_channels": [
+              {
+                "id": "20f66f4b-4087-4e37-80c2-b25efd9da092",
+                "name": "cli-rubric-pilot-20260804-5b6c05",
+                "webhook_url": "https://example.invalid/cli-rubric-pilot-20260804-5b6c05"
+              }
+            ]
+          },
+          "state_before": {
+            "matching_channels": [
+              {
+                "id": "20f66f4b-4087-4e37-80c2-b25efd9da092",
+                "name": "cli-rubric-pilot-20260804-5b6c05",
+                "webhook_url": "https://example.invalid/cli-rubric-pilot-20260804-5b6c05"
+              }
+            ]
+          },
+          "state_changed": false,
+          "stderr": "Error: unknown flag: --yes\n",
+          "stdout": "",
+          "step_id": "confirmation-probe",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "get",
+            "--id",
+            "20f66f4b-4087-4e37-80c2-b25efd9da092",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 736,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 18,
+          "started_at": "2026-08-04T04:32:04.443083Z",
+          "state_after": {
+            "matching_channels": [
+              {
+                "id": "20f66f4b-4087-4e37-80c2-b25efd9da092",
+                "name": "cli-rubric-pilot-20260804-5b6c05",
+                "webhook_url": "https://example.invalid/cli-rubric-pilot-20260804-5b6c05"
+              }
+            ]
+          },
+          "state_before": {
+            "matching_channels": [
+              {
+                "id": "20f66f4b-4087-4e37-80c2-b25efd9da092",
+                "name": "cli-rubric-pilot-20260804-5b6c05",
+                "webhook_url": "https://example.invalid/cli-rubric-pilot-20260804-5b6c05"
+              }
+            ]
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"matching_channels\": [{\"id\": \"20f66f4b-4087-4e37-80c2-b25efd9da092\", \"name\": \"cli-rubric-pilot-20260804-5b6c05\", \"webhook_url\": \"https://example.invalid/cli-rubric-pilot-20260804-5b6c05\"}]}",
+          "step_id": "state-after-confirmation-probe-sample-1",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "delete",
+            "--id",
+            "20f66f4b-4087-4e37-80c2-b25efd9da092",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 7497,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 19,
+          "started_at": "2026-08-04T04:32:05.179608Z",
+          "state_after": {
+            "matching_channels": []
+          },
+          "state_before": {
+            "matching_channels": [
+              {
+                "id": "20f66f4b-4087-4e37-80c2-b25efd9da092",
+                "name": "cli-rubric-pilot-20260804-5b6c05",
+                "webhook_url": "https://example.invalid/cli-rubric-pilot-20260804-5b6c05"
+              }
+            ]
+          },
+          "state_changed": true,
+          "stderr": "",
+          "stdout": "{\"ok\": true}",
+          "step_id": "commit-delete",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "get",
+            "--id",
+            "20f66f4b-4087-4e37-80c2-b25efd9da092",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 629,
+          "exit_code": 3,
+          "redacted": true,
+          "sequence": 20,
+          "started_at": "2026-08-04T04:32:12.677604Z",
+          "state_after": {
+            "matching_channels": []
+          },
+          "state_before": {
+            "matching_channels": []
+          },
+          "state_changed": false,
+          "stderr": "{\"error\": {\"code\": \"api_error\", \"message\": \"GET https://awire.samzong.workers.dev/api/v1/channels/20f66f4b-4087-4e37-80c2-b25efd9da092: HTTP 404: {\\\"error\\\":\\\"channel not found\\\"}\"}}",
+          "stdout": "{\"matching_channels\": []}",
+          "step_id": "state-after-delete-sample-1",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "delete",
+            "--id",
+            "20f66f4b-4087-4e37-80c2-b25efd9da092",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 788,
+          "exit_code": 3,
+          "redacted": true,
+          "sequence": 21,
+          "started_at": "2026-08-04T04:32:13.306841Z",
+          "state_after": null,
+          "state_before": null,
+          "state_changed": false,
+          "stderr": "{\"error\": {\"code\": \"api_error\", \"message\": \"DELETE https://awire.samzong.workers.dev/api/v1/channels/20f66f4b-4087-4e37-80c2-b25efd9da092: HTTP 404: {\\\"error\\\":\\\"channel not found\\\"}\"}}",
+          "stdout": "",
+          "step_id": "emergency-cleanup",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "awirectl",
+            "channels",
+            "get",
+            "--id",
+            "20f66f4b-4087-4e37-80c2-b25efd9da092",
+            "-o",
+            "json"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 655,
+          "exit_code": 3,
+          "redacted": true,
+          "sequence": 22,
+          "started_at": "2026-08-04T04:32:14.095798Z",
+          "state_after": {
+            "matching_channels": []
+          },
+          "state_before": {
+            "matching_channels": []
+          },
+          "state_changed": false,
+          "stderr": "{\"error\": {\"code\": \"api_error\", \"message\": \"GET https://awire.samzong.workers.dev/api/v1/channels/20f66f4b-4087-4e37-80c2-b25efd9da092: HTTP 404: {\\\"error\\\":\\\"channel not found\\\"}\"}}",
+          "stdout": "{\"matching_channels\": []}",
+          "step_id": "cleanup-final-state-sample-1",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        }
+      ],
+      "sandbox": {
+        "channel_id": "20f66f4b-4087-4e37-80c2-b25efd9da092",
+        "channel_name": "cli-rubric-pilot-20260804-5b6c05"
+      },
+      "started_at": "2026-08-04T04:31:53.465644Z",
+      "status": "complete",
+      "subject": {
+        "artifact_sha256": "e6c8b6b93ff083d13cfa97849ffe0512583cf6029fece8882bd41907548feee4",
+        "capability_domain": "delivery-channel",
+        "id": "awirectl",
+        "path": "/Users/x/.local/bin/awirectl",
+        "role": "lathe-generated-subject",
+        "sandbox": {
+          "cleanup": "Delete only the exact channel ID returned by this run.",
+          "kind": "remote-channel",
+          "name_prefix": "cli-rubric-pilot-",
+          "precondition": "No channel has the exact generated name.",
+          "webhook_host": "example.invalid"
+        },
+        "source_revision": "6257b84",
+        "source_uri": "https://github.com/samzong/awire",
+        "version": "0.1.0"
+      },
+      "tasks": {
+        "confirm-and-clean-up": {
+          "criteria": {
+            "cli_confirmation_required": false,
+            "delete_success": true,
+            "deleted_state_verified": true
+          },
+          "status": "success"
+        },
+        "discover-mutation-contract": {
+          "criteria": {
+            "destructive_path_identified": true,
+            "discovery_exit_zero": true,
+            "mutation_path_identified": true
+          },
+          "status": "success"
+        },
+        "preview-destructive-change": {
+          "criteria": {
+            "preview_preserves_state": true,
+            "preview_supported": false
+          },
+          "status": "success"
+        },
+        "reject-invalid-and-recover": {
+          "criteria": {
+            "actionable_error": true,
+            "created_state_verified": true,
+            "invalid_nonzero": true,
+            "invalid_preserves_state": true,
+            "recovery_success": true
+          },
+          "status": "success"
+        }
+      }
+    },
+    "difyctl": {
+      "cleanup": {
+        "attempted": true,
+        "verified_absent": true
+      },
+      "commands": [
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "path"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 256,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 1,
+          "started_at": "2026-08-04T04:31:49.895859Z",
+          "state_after": null,
+          "state_before": null,
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "/var/folders/5x/qb9zd6992hv4mxkfwtlvkfgh0000gn/T/cli-rubric-difyctl-yxpmszg2/config.yml",
+          "step_id": "resolve-config-path",
+          "task_id": "discover-mutation-contract",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "set",
+            "--help"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 253,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 2,
+          "started_at": "2026-08-04T04:31:50.151965Z",
+          "state_after": null,
+          "state_before": null,
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "Set a config key (validates value)\n\nUSAGE\n  $ difyctl config set [ARGS]\n\nARGUMENTS\n  key (required)  config key\n  value (required)  config value\n\nEXAMPLES\n  $ difyctl config set defaults.format json\n  $ difyctl config set defaults.limit 50\n\n",
+          "step_id": "set-help",
+          "task_id": "discover-mutation-contract",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "unset",
+            "--help"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 254,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 3,
+          "started_at": "2026-08-04T04:31:50.405203Z",
+          "state_after": null,
+          "state_before": null,
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "Reset a config key to its zero value\n\nUSAGE\n  $ difyctl config unset [ARGS]\n\nARGUMENTS\n  key (required)  config key\n\nEXAMPLES\n  $ difyctl config unset defaults.format\n\n",
+          "step_id": "unset-help",
+          "task_id": "discover-mutation-contract",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "get",
+            "defaults.limit"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 248,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 4,
+          "started_at": "2026-08-04T04:31:50.659637Z",
+          "state_after": {
+            "error": "",
+            "exit_code": 0,
+            "value": ""
+          },
+          "state_before": {
+            "error": "",
+            "exit_code": 0,
+            "value": ""
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "\n",
+          "step_id": "state-before-invalid",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "set",
+            "defaults.limit",
+            "not-an-integer"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 256,
+          "exit_code": 2,
+          "redacted": false,
+          "sequence": 5,
+          "started_at": "2026-08-04T04:31:50.907997Z",
+          "state_after": {
+            "error": "",
+            "exit_code": 0,
+            "value": ""
+          },
+          "state_before": {
+            "error": "",
+            "exit_code": 0,
+            "value": ""
+          },
+          "state_changed": false,
+          "stderr": "config_invalid_value: defaults.limit: \"not-an-integer\" is not a number\n",
+          "stdout": "",
+          "step_id": "invalid-set",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "get",
+            "defaults.limit"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 255,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 6,
+          "started_at": "2026-08-04T04:31:51.163942Z",
+          "state_after": {
+            "error": "",
+            "exit_code": 0,
+            "value": ""
+          },
+          "state_before": {
+            "error": "",
+            "exit_code": 0,
+            "value": ""
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "\n",
+          "step_id": "state-after-invalid",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "set",
+            "defaults.limit",
+            "37"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 266,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 7,
+          "started_at": "2026-08-04T04:31:51.418608Z",
+          "state_after": {
+            "error": "",
+            "exit_code": 0,
+            "value": "37"
+          },
+          "state_before": {
+            "error": "",
+            "exit_code": 0,
+            "value": ""
+          },
+          "state_changed": true,
+          "stderr": "",
+          "stdout": "set defaults.limit = 37\n",
+          "step_id": "recover-set",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "get",
+            "defaults.limit"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 259,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 8,
+          "started_at": "2026-08-04T04:31:51.684215Z",
+          "state_after": {
+            "error": "",
+            "exit_code": 0,
+            "value": "37"
+          },
+          "state_before": {
+            "error": "",
+            "exit_code": 0,
+            "value": "37"
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "37",
+          "step_id": "state-after-recovery",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "unset",
+            "defaults.limit",
+            "--dry-run"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 254,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 9,
+          "started_at": "2026-08-04T04:31:51.942920Z",
+          "state_after": {
+            "error": "",
+            "exit_code": 0,
+            "value": "37"
+          },
+          "state_before": {
+            "error": "",
+            "exit_code": 0,
+            "value": "37"
+          },
+          "state_changed": false,
+          "stderr": "unknown: unknown flag: --dry-run\n",
+          "stdout": "",
+          "step_id": "preview-probe",
+          "task_id": "preview-destructive-change",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "get",
+            "defaults.limit"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 257,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 10,
+          "started_at": "2026-08-04T04:31:52.197503Z",
+          "state_after": {
+            "error": "",
+            "exit_code": 0,
+            "value": "37"
+          },
+          "state_before": {
+            "error": "",
+            "exit_code": 0,
+            "value": "37"
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "37",
+          "step_id": "state-after-preview",
+          "task_id": "preview-destructive-change",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "unset",
+            "defaults.limit",
+            "--yes"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 250,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 11,
+          "started_at": "2026-08-04T04:31:52.454247Z",
+          "state_after": {
+            "error": "",
+            "exit_code": 0,
+            "value": "37"
+          },
+          "state_before": {
+            "error": "",
+            "exit_code": 0,
+            "value": "37"
+          },
+          "state_changed": false,
+          "stderr": "unknown: unknown flag: --yes\n",
+          "stdout": "",
+          "step_id": "confirmation-probe",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "get",
+            "defaults.limit"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 254,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 12,
+          "started_at": "2026-08-04T04:31:52.704766Z",
+          "state_after": {
+            "error": "",
+            "exit_code": 0,
+            "value": "37"
+          },
+          "state_before": {
+            "error": "",
+            "exit_code": 0,
+            "value": "37"
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "37",
+          "step_id": "state-after-confirmation-probe",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "unset",
+            "defaults.limit"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 259,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 13,
+          "started_at": "2026-08-04T04:31:52.958496Z",
+          "state_after": {
+            "error": "",
+            "exit_code": 0,
+            "value": ""
+          },
+          "state_before": {
+            "error": "",
+            "exit_code": 0,
+            "value": "37"
+          },
+          "state_changed": true,
+          "stderr": "",
+          "stdout": "unset defaults.limit\n",
+          "step_id": "commit-unset",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "get",
+            "defaults.limit"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 248,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 14,
+          "started_at": "2026-08-04T04:31:53.217250Z",
+          "state_after": {
+            "error": "",
+            "exit_code": 0,
+            "value": ""
+          },
+          "state_before": {
+            "error": "",
+            "exit_code": 0,
+            "value": ""
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "\n",
+          "step_id": "state-after-delete",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        }
+      ],
+      "sandbox": {
+        "kind": "temporary-config-dir"
+      },
+      "started_at": "2026-08-04T04:31:49.894507Z",
+      "status": "complete",
+      "subject": {
+        "artifact_sha256": "4ef9a71c08aff5f981b3ba933165dd62b439cdf3629989d403157e055078a2b7",
+        "capability_domain": "local-configuration",
+        "id": "difyctl",
+        "path": "/Users/x/.local/bin/difyctl",
+        "role": "early-domain-cli",
+        "sandbox": {
+          "cleanup": "TemporaryDirectory removes the entire isolated config root.",
+          "key": "defaults.limit",
+          "kind": "temporary-config-dir",
+          "precondition": "The resolved config path is inside the temporary DIFY_CONFIG_DIR root."
+        },
+        "source_revision": "3aa26fb6374bbd47e5469f7d7cc25f3e0075a60c",
+        "source_uri": "local-installed:///Users/x/.local/bin/difyctl",
+        "version": "0.1.0-alpha"
+      },
+      "tasks": {
+        "confirm-and-clean-up": {
+          "criteria": {
+            "cli_confirmation_required": false,
+            "delete_success": true,
+            "deleted_state_verified": true
+          },
+          "status": "success"
+        },
+        "discover-mutation-contract": {
+          "criteria": {
+            "destructive_path_identified": true,
+            "discovery_exit_zero": true,
+            "mutation_path_identified": true
+          },
+          "status": "success"
+        },
+        "preview-destructive-change": {
+          "criteria": {
+            "preview_preserves_state": true,
+            "preview_supported": false
+          },
+          "status": "success"
+        },
+        "reject-invalid-and-recover": {
+          "criteria": {
+            "actionable_error": true,
+            "created_state_verified": true,
+            "invalid_nonzero": true,
+            "invalid_preserves_state": true,
+            "recovery_success": true
+          },
+          "status": "success"
+        }
+      }
+    },
+    "gh": {
+      "cleanup": {
+        "attempted": false,
+        "verified_absent": true
+      },
+      "commands": [
+        {
+          "argv": [
+            "gh",
+            "api",
+            "user",
+            "--jq",
+            ".login"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 1004,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 1,
+          "started_at": "2026-08-04T04:31:35.045974Z",
+          "state_after": null,
+          "state_before": null,
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "samzong\n",
+          "step_id": "resolve-owner",
+          "task_id": "discover-mutation-contract",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "view",
+            "samzong/cli-rubric-pilot-20260804-5b6c05",
+            "--json",
+            "nameWithOwner,isPrivate,description"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 933,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 2,
+          "started_at": "2026-08-04T04:31:36.050114Z",
+          "state_after": {
+            "exists": false
+          },
+          "state_before": {
+            "exists": false
+          },
+          "state_changed": false,
+          "stderr": "GraphQL: Could not resolve to a Repository with the name 'samzong/cli-rubric-pilot-20260804-5b6c05'. (repository)\n",
+          "stdout": "",
+          "step_id": "precondition-state",
+          "task_id": "discover-mutation-contract",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "create",
+            "--help"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 56,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 3,
+          "started_at": "2026-08-04T04:31:36.983207Z",
+          "state_after": null,
+          "state_before": null,
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "Create a new GitHub repository.\n\nTo create a repository interactively, use `gh repo create` with no arguments.\n\nTo create a remote repository non-interactively, supply the repository name and one of `--public`, `--private`, or `--internal`.\nPass `--clone` to clone the new repository locally.\n\nIf the `OWNER/` portion of the `OWNER/REPO` name argument is omitted, it\ndefaults to the name of the authenticating user.\n\nTo create a remote repository from an existing local repository, specify the source directory with `--source`.\nBy default, the remote repository name will be the name of the source directory.\n\nPass `--push` to push any local commits to the new repository. If the repo is bare, this will mirror all refs.\n\nFor language or platform .gitignore templates to use with `--gitignore`, <https://github.com/github/gitignore>.\n\nFor license keywords to use with `--license`, run `gh repo license list` or visit <https://choosealicense.com>.\n\nThe repo is created with the configured repository default branch, see <https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-user-account-settings/managing-the-default-branch-name-for-your-repositories>.\n\n\nUSAGE\n  gh repo create [<name>] [flags]\n\nALIASES\n  gh repo new\n\nFLAGS\n      --add-readme             Add a README file to the new repository\n  -c, --clone                  Clone the new repository to the current directory\n  -d, --description string     Description of the repository\n      --disable-issues         Disable issues in the new repository\n      --disable-wiki           Disable wiki in the new repository\n  -g, --gitignore string       Specify a gitignore template for the repository\n  -h, --homepage URL           Repository home page URL\n      --include-all-branches   Include all branches from template repository\n      --internal               Make the new repository internal\n  -l, --license string         Specify an Open Source License for the repository\n      --private                Make the new repository private\n      --public                 Make the new repository public\n      --push                   Push local commits to the new repository\n  -r, --remote string          Specify remote name for the new repository\n  -s, --source string          Specify path to local repository to use as source\n  -t, --team name              The name of the organization team to be granted access\n  -p, --template repository    Make the new repository based on a template repository\n\nINHERITED FLAGS\n  --help   Show help for command\n\nEXAMPLES\n  # Create a repository interactively\n  $ gh repo create\n  \n  # Create a new remote repository and clone it locally\n  $ gh repo create my-project --public --clone\n  \n  # Create a new remote repository in a different organization\n  $ gh repo create my-org/my-project --public\n  \n  # Create a remote repository from the current directory\n  $ gh repo create my-project --private --source=. --remote=upstream\n\nLEARN MORE\n  Use `gh <command> <subcommand> --help` for more information about a command.\n  Read the manual at https://cli.github.com/manual\n  Learn about exit codes using `gh help exit-codes`\n  Learn about accessibility experiences using `gh help accessibility`\n\n",
+          "step_id": "create-help",
+          "task_id": "discover-mutation-contract",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "delete",
+            "--help"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 56,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 4,
+          "started_at": "2026-08-04T04:31:37.039623Z",
+          "state_after": null,
+          "state_before": null,
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "Delete a GitHub repository.\n\nWith no argument, deletes the current repository. Otherwise, deletes the specified repository.\n\nFor safety, when no repository argument is provided, the `--yes` flag is ignored \nand you will be prompted for confirmation. To delete the current repository non-interactively, \nspecify it explicitly (e.g., `gh repo delete owner/repo --yes`).\n\nDeletion requires authorization with the `delete_repo` scope.\nTo authorize, run `gh auth refresh -s delete_repo`\n\n\nUSAGE\n  gh repo delete [<repository>] [flags]\n\nFLAGS\n  --yes   Confirm deletion without prompting\n\nINHERITED FLAGS\n  --help   Show help for command\n\nLEARN MORE\n  Use `gh <command> <subcommand> --help` for more information about a command.\n  Read the manual at https://cli.github.com/manual\n  Learn about exit codes using `gh help exit-codes`\n  Learn about accessibility experiences using `gh help accessibility`\n\n",
+          "step_id": "delete-help",
+          "task_id": "discover-mutation-contract",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "view",
+            "samzong/cli-rubric-pilot-20260804-5b6c05",
+            "--json",
+            "nameWithOwner,isPrivate,description"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 1029,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 5,
+          "started_at": "2026-08-04T04:31:37.096010Z",
+          "state_after": {
+            "exists": false
+          },
+          "state_before": {
+            "exists": false
+          },
+          "state_changed": false,
+          "stderr": "GraphQL: Could not resolve to a Repository with the name 'samzong/cli-rubric-pilot-20260804-5b6c05'. (repository)\n",
+          "stdout": "",
+          "step_id": "state-before-invalid",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "create",
+            "samzong/cli-rubric-pilot-20260804-5b6c05",
+            "--description",
+            "CLI Rubric disposable pilot fixture"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 63,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 6,
+          "started_at": "2026-08-04T04:31:38.125547Z",
+          "state_after": {
+            "exists": false
+          },
+          "state_before": {
+            "exists": false
+          },
+          "state_changed": false,
+          "stderr": "`--public`, `--private`, or `--internal` required when not running interactively\n\nUsage:  gh repo create [<name>] [flags]\n\nFlags:\n      --add-readme             Add a README file to the new repository\n  -c, --clone                  Clone the new repository to the current directory\n  -d, --description string     Description of the repository\n      --disable-issues         Disable issues in the new repository\n      --disable-wiki           Disable wiki in the new repository\n  -g, --gitignore string       Specify a gitignore template for the repository\n  -h, --homepage URL           Repository home page URL\n      --include-all-branches   Include all branches from template repository\n      --internal               Make the new repository internal\n  -l, --license string         Specify an Open Source License for the repository\n      --private                Make the new repository private\n      --public                 Make the new repository public\n      --push                   Push local commits to the new repository\n  -r, --remote string          Specify remote name for the new repository\n  -s, --source string          Specify path to local repository to use as source\n  -t, --team name              The name of the organization team to be granted access\n  -p, --template repository    Make the new repository based on a template repository\n  \n",
+          "stdout": "",
+          "step_id": "invalid-create",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "view",
+            "samzong/cli-rubric-pilot-20260804-5b6c05",
+            "--json",
+            "nameWithOwner,isPrivate,description"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 938,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 7,
+          "started_at": "2026-08-04T04:31:38.188334Z",
+          "state_after": {
+            "exists": false
+          },
+          "state_before": {
+            "exists": false
+          },
+          "state_changed": false,
+          "stderr": "GraphQL: Could not resolve to a Repository with the name 'samzong/cli-rubric-pilot-20260804-5b6c05'. (repository)\n",
+          "stdout": "",
+          "step_id": "state-after-invalid",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "create",
+            "samzong/cli-rubric-pilot-20260804-5b6c05",
+            "--private",
+            "--description",
+            "CLI Rubric disposable pilot fixture"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 3595,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 8,
+          "started_at": "2026-08-04T04:31:39.127543Z",
+          "state_after": {
+            "exists": true,
+            "repository": {
+              "description": "CLI Rubric disposable pilot fixture",
+              "isPrivate": true,
+              "nameWithOwner": "samzong/cli-rubric-pilot-20260804-5b6c05"
+            }
+          },
+          "state_before": {
+            "exists": false
+          },
+          "state_changed": true,
+          "stderr": "",
+          "stdout": "https://github.com/samzong/cli-rubric-pilot-20260804-5b6c05\n",
+          "step_id": "recover-create",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "view",
+            "samzong/cli-rubric-pilot-20260804-5b6c05",
+            "--json",
+            "nameWithOwner,isPrivate,description"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 1090,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 9,
+          "started_at": "2026-08-04T04:31:42.722414Z",
+          "state_after": {
+            "exists": true,
+            "repository": {
+              "description": "CLI Rubric disposable pilot fixture",
+              "isPrivate": true,
+              "nameWithOwner": "samzong/cli-rubric-pilot-20260804-5b6c05"
+            }
+          },
+          "state_before": {
+            "exists": true,
+            "repository": {
+              "description": "CLI Rubric disposable pilot fixture",
+              "isPrivate": true,
+              "nameWithOwner": "samzong/cli-rubric-pilot-20260804-5b6c05"
+            }
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"description\": \"CLI Rubric disposable pilot fixture\", \"isPrivate\": true, \"nameWithOwner\": \"samzong/cli-rubric-pilot-20260804-5b6c05\"}",
+          "step_id": "state-after-recovery",
+          "task_id": "reject-invalid-and-recover",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "delete",
+            "samzong/cli-rubric-pilot-20260804-5b6c05",
+            "--dry-run"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 60,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 10,
+          "started_at": "2026-08-04T04:31:43.812856Z",
+          "state_after": {
+            "exists": true,
+            "repository": {
+              "description": "CLI Rubric disposable pilot fixture",
+              "isPrivate": true,
+              "nameWithOwner": "samzong/cli-rubric-pilot-20260804-5b6c05"
+            }
+          },
+          "state_before": {
+            "exists": true,
+            "repository": {
+              "description": "CLI Rubric disposable pilot fixture",
+              "isPrivate": true,
+              "nameWithOwner": "samzong/cli-rubric-pilot-20260804-5b6c05"
+            }
+          },
+          "state_changed": false,
+          "stderr": "unknown flag: --dry-run\n\nUsage:  gh repo delete [<repository>] [flags]\n\nFlags:\n  --yes   Confirm deletion without prompting\n  \n",
+          "stdout": "",
+          "step_id": "preview-probe",
+          "task_id": "preview-destructive-change",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "view",
+            "samzong/cli-rubric-pilot-20260804-5b6c05",
+            "--json",
+            "nameWithOwner,isPrivate,description"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 1075,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 11,
+          "started_at": "2026-08-04T04:31:43.872700Z",
+          "state_after": {
+            "exists": true,
+            "repository": {
+              "description": "CLI Rubric disposable pilot fixture",
+              "isPrivate": true,
+              "nameWithOwner": "samzong/cli-rubric-pilot-20260804-5b6c05"
+            }
+          },
+          "state_before": {
+            "exists": true,
+            "repository": {
+              "description": "CLI Rubric disposable pilot fixture",
+              "isPrivate": true,
+              "nameWithOwner": "samzong/cli-rubric-pilot-20260804-5b6c05"
+            }
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"description\": \"CLI Rubric disposable pilot fixture\", \"isPrivate\": true, \"nameWithOwner\": \"samzong/cli-rubric-pilot-20260804-5b6c05\"}",
+          "step_id": "state-after-preview",
+          "task_id": "preview-destructive-change",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "delete",
+            "samzong/cli-rubric-pilot-20260804-5b6c05"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 55,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 12,
+          "started_at": "2026-08-04T04:31:44.947933Z",
+          "state_after": {
+            "exists": true,
+            "repository": {
+              "description": "CLI Rubric disposable pilot fixture",
+              "isPrivate": true,
+              "nameWithOwner": "samzong/cli-rubric-pilot-20260804-5b6c05"
+            }
+          },
+          "state_before": {
+            "exists": true,
+            "repository": {
+              "description": "CLI Rubric disposable pilot fixture",
+              "isPrivate": true,
+              "nameWithOwner": "samzong/cli-rubric-pilot-20260804-5b6c05"
+            }
+          },
+          "state_changed": false,
+          "stderr": "--yes required when not running interactively\n\nUsage:  gh repo delete [<repository>] [flags]\n\nFlags:\n  --yes   Confirm deletion without prompting\n  \n",
+          "stdout": "",
+          "step_id": "confirmation-probe",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "view",
+            "samzong/cli-rubric-pilot-20260804-5b6c05",
+            "--json",
+            "nameWithOwner,isPrivate,description"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 975,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 13,
+          "started_at": "2026-08-04T04:31:45.002720Z",
+          "state_after": {
+            "exists": true,
+            "repository": {
+              "description": "CLI Rubric disposable pilot fixture",
+              "isPrivate": true,
+              "nameWithOwner": "samzong/cli-rubric-pilot-20260804-5b6c05"
+            }
+          },
+          "state_before": {
+            "exists": true,
+            "repository": {
+              "description": "CLI Rubric disposable pilot fixture",
+              "isPrivate": true,
+              "nameWithOwner": "samzong/cli-rubric-pilot-20260804-5b6c05"
+            }
+          },
+          "state_changed": false,
+          "stderr": "",
+          "stdout": "{\"description\": \"CLI Rubric disposable pilot fixture\", \"isPrivate\": true, \"nameWithOwner\": \"samzong/cli-rubric-pilot-20260804-5b6c05\"}",
+          "step_id": "state-after-confirmation-probe",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "delete",
+            "samzong/cli-rubric-pilot-20260804-5b6c05",
+            "--yes"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 1073,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 14,
+          "started_at": "2026-08-04T04:31:45.977579Z",
+          "state_after": {
+            "exists": false
+          },
+          "state_before": {
+            "exists": true,
+            "repository": {
+              "description": "CLI Rubric disposable pilot fixture",
+              "isPrivate": true,
+              "nameWithOwner": "samzong/cli-rubric-pilot-20260804-5b6c05"
+            }
+          },
+          "state_changed": true,
+          "stderr": "",
+          "stdout": "",
+          "step_id": "confirmed-delete",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "view",
+            "samzong/cli-rubric-pilot-20260804-5b6c05",
+            "--json",
+            "nameWithOwner,isPrivate,description"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 931,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 15,
+          "started_at": "2026-08-04T04:31:47.051021Z",
+          "state_after": {
+            "exists": false
+          },
+          "state_before": {
+            "exists": false
+          },
+          "state_changed": false,
+          "stderr": "GraphQL: Could not resolve to a Repository with the name 'samzong/cli-rubric-pilot-20260804-5b6c05'. (repository)\n",
+          "stdout": "",
+          "step_id": "state-after-delete",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "view",
+            "samzong/cli-rubric-pilot-20260804-5b6c05",
+            "--json",
+            "nameWithOwner,isPrivate,description"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 1003,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 16,
+          "started_at": "2026-08-04T04:31:47.982126Z",
+          "state_after": {
+            "exists": false
+          },
+          "state_before": {
+            "exists": false
+          },
+          "state_changed": false,
+          "stderr": "GraphQL: Could not resolve to a Repository with the name 'samzong/cli-rubric-pilot-20260804-5b6c05'. (repository)\n",
+          "stdout": "",
+          "step_id": "cleanup-precheck",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "gh",
+            "repo",
+            "view",
+            "samzong/cli-rubric-pilot-20260804-5b6c05",
+            "--json",
+            "nameWithOwner,isPrivate,description"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 908,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 17,
+          "started_at": "2026-08-04T04:31:48.985921Z",
+          "state_after": {
+            "exists": false
+          },
+          "state_before": {
+            "exists": false
+          },
+          "state_changed": false,
+          "stderr": "GraphQL: Could not resolve to a Repository with the name 'samzong/cli-rubric-pilot-20260804-5b6c05'. (repository)\n",
+          "stdout": "",
+          "step_id": "cleanup-final-state",
+          "task_id": "confirm-and-clean-up",
+          "termination": "exit"
+        }
+      ],
+      "sandbox": {
+        "repository": "samzong/cli-rubric-pilot-20260804-5b6c05"
+      },
+      "started_at": "2026-08-04T04:31:35.045959Z",
+      "status": "complete",
+      "subject": {
+        "artifact_sha256": "6a2ab5fa89553eac1f0df50a26a5eaeea9a665d8971f5a51b32487b72c708f5c",
+        "capability_domain": "github-repository",
+        "id": "gh",
+        "path": "/opt/homebrew/bin/gh",
+        "role": "mature-external-reference",
+        "sandbox": {
+          "cleanup": "Delete only the exact repository name created by this run.",
+          "kind": "private-repository",
+          "name_prefix": "cli-rubric-pilot-",
+          "precondition": "The exact repository name does not exist."
+        },
+        "source_uri": "https://github.com/cli/cli",
+        "version": "2.97.0"
+      },
+      "tasks": {
+        "confirm-and-clean-up": {
+          "criteria": {
+            "cli_confirmation_required": true,
+            "delete_success": true,
+            "deleted_state_verified": true
+          },
+          "status": "success"
+        },
+        "discover-mutation-contract": {
+          "criteria": {
+            "destructive_path_identified": true,
+            "discovery_exit_zero": true,
+            "mutation_path_identified": true
+          },
+          "status": "success"
+        },
+        "preview-destructive-change": {
+          "criteria": {
+            "preview_preserves_state": true,
+            "preview_supported": false
+          },
+          "status": "success"
+        },
+        "reject-invalid-and-recover": {
+          "criteria": {
+            "actionable_error": true,
+            "created_state_verified": true,
+            "invalid_nonzero": true,
+            "invalid_preserves_state": true,
+            "recovery_success": true
+          },
+          "status": "success"
+        }
+      }
+    }
+  }
+}

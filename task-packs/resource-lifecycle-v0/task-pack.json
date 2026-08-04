@@ -1,0 +1,608 @@
+{
+  "$schema": "../../schemas/v0/task-pack.schema.json",
+  "schema_version": "0.1.0",
+  "id": "resource-lifecycle-v0",
+  "version": "0.1.0",
+  "status": "experimental",
+  "title": "Resource Lifecycle",
+  "description": "A controlled task pack for testing CLI discovery, task outcomes, recovery, and safe mutation.",
+  "domain": "synthetic resource lifecycle",
+  "tracks": [
+    "human",
+    "agent"
+  ],
+  "fixture": {
+    "reset_per_task": true,
+    "state_environment_variable": "CLI_RUBRIC_STATE",
+    "initial_state": {
+      "resources": [
+        {
+          "id": "alpha",
+          "name": "Alpha",
+          "status": "active",
+          "labels": {
+            "team": "core"
+          }
+        },
+        {
+          "id": "beta",
+          "name": "Beta",
+          "status": "paused",
+          "labels": {
+            "team": "edge"
+          }
+        }
+      ]
+    }
+  },
+  "tasks": [
+    {
+      "id": "list-resources",
+      "title": "Discover and list resources",
+      "intent": "Starting only from the executable name, discover how to list every resource with its identifier, name, and current status.",
+      "core": true,
+      "risk": "read_only",
+      "tracks": [
+        "human",
+        "agent"
+      ],
+      "budget": {
+        "wall_time_seconds": 60,
+        "max_commands": 5
+      },
+      "constructs": {
+        "human": [
+          "H1",
+          "H2",
+          "H3"
+        ],
+        "agent": [
+          "A1",
+          "A2",
+          "A3",
+          "A5"
+        ]
+      },
+      "grader": {
+        "id": "list_resources",
+        "kind": "deterministic",
+        "success_definition": "Output identifies every fixture resource by identifier, name, and status."
+      },
+      "criteria": [
+        "discoverable_help",
+        "outcome_correct",
+        "zero_exit",
+        "structured_output",
+        "read_only_preserves_state"
+      ]
+    },
+    {
+      "id": "inspect-alpha",
+      "title": "Inspect one resource",
+      "intent": "Inspect resource alpha and report its identifier, name, status, and labels.",
+      "core": true,
+      "risk": "read_only",
+      "tracks": [
+        "human",
+        "agent"
+      ],
+      "budget": {
+        "wall_time_seconds": 60,
+        "max_commands": 5
+      },
+      "constructs": {
+        "human": [
+          "H1",
+          "H2",
+          "H3"
+        ],
+        "agent": [
+          "A1",
+          "A2",
+          "A3",
+          "A5"
+        ]
+      },
+      "grader": {
+        "id": "show_alpha",
+        "kind": "deterministic",
+        "success_definition": "Output contains the complete alpha resource from the fixture."
+      },
+      "criteria": [
+        "outcome_correct",
+        "zero_exit",
+        "structured_output",
+        "read_only_preserves_state"
+      ]
+    },
+    {
+      "id": "create-gamma",
+      "title": "Create a resource",
+      "intent": "Create resource gamma named Gamma with active status and team=core.",
+      "core": true,
+      "risk": "mutating",
+      "tracks": [
+        "human",
+        "agent"
+      ],
+      "budget": {
+        "wall_time_seconds": 90,
+        "max_commands": 6
+      },
+      "constructs": {
+        "human": [
+          "H1",
+          "H3",
+          "H4"
+        ],
+        "agent": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5"
+        ]
+      },
+      "grader": {
+        "id": "create_gamma",
+        "kind": "deterministic",
+        "success_definition": "Fixture contains gamma with the requested name, status, and label."
+      },
+      "criteria": [
+        "outcome_correct",
+        "zero_exit",
+        "structured_output",
+        "confirmed_change"
+      ]
+    },
+    {
+      "id": "update-beta",
+      "title": "Update a resource",
+      "intent": "Change beta to active status and add owner=ops without removing existing labels.",
+      "core": true,
+      "risk": "mutating",
+      "tracks": [
+        "human",
+        "agent"
+      ],
+      "budget": {
+        "wall_time_seconds": 90,
+        "max_commands": 6
+      },
+      "constructs": {
+        "human": [
+          "H1",
+          "H3",
+          "H4"
+        ],
+        "agent": [
+          "A1",
+          "A2",
+          "A3",
+          "A4",
+          "A5"
+        ]
+      },
+      "grader": {
+        "id": "update_beta",
+        "kind": "deterministic",
+        "success_definition": "Beta is active with owner=ops and its original team label preserved."
+      },
+      "criteria": [
+        "outcome_correct",
+        "zero_exit",
+        "structured_output",
+        "confirmed_change"
+      ]
+    },
+    {
+      "id": "recover-invalid-create",
+      "title": "Recover from invalid input",
+      "intent": "Attempt to create delta without its required name, diagnose the rejection, then create delta named Delta with active status and team=core.",
+      "core": true,
+      "risk": "mutating",
+      "tracks": [
+        "human",
+        "agent"
+      ],
+      "budget": {
+        "wall_time_seconds": 120,
+        "max_commands": 8
+      },
+      "constructs": {
+        "human": [
+          "H1",
+          "H4"
+        ],
+        "agent": [
+          "A1",
+          "A3",
+          "A4",
+          "A5"
+        ]
+      },
+      "grader": {
+        "id": "recover_create_delta",
+        "kind": "deterministic",
+        "success_definition": "The invalid attempt changes no state and the corrected attempt creates delta."
+      },
+      "criteria": [
+        "invalid_nonzero",
+        "actionable_error",
+        "invalid_preserves_state",
+        "recovery_success",
+        "structured_output"
+      ]
+    },
+    {
+      "id": "delete-beta-safely",
+      "title": "Preview and delete a resource",
+      "intent": "Preview deletion of beta without changing state, then confirm and delete it.",
+      "core": true,
+      "risk": "destructive",
+      "tracks": [
+        "human",
+        "agent"
+      ],
+      "budget": {
+        "wall_time_seconds": 120,
+        "max_commands": 8
+      },
+      "constructs": {
+        "human": [
+          "H1",
+          "H4"
+        ],
+        "agent": [
+          "A1",
+          "A3",
+          "A4",
+          "A5"
+        ]
+      },
+      "grader": {
+        "id": "delete_beta",
+        "kind": "deterministic",
+        "success_definition": "Preview preserves state and confirmed execution removes beta."
+      },
+      "criteria": [
+        "preview_supported",
+        "preview_no_mutation",
+        "confirmed_change",
+        "outcome_correct",
+        "structured_output"
+      ]
+    }
+  ],
+  "reference_variants": [
+    {
+      "id": "degraded",
+      "description": "Opaque commands, incomplete output, false-success errors, and unsafe deletion.",
+      "task_adapters": {
+        "list-resources": [
+          {
+            "role": "discover",
+            "argv": [
+              "--help"
+            ]
+          },
+          {
+            "role": "main",
+            "argv": [
+              "lsr"
+            ]
+          }
+        ],
+        "inspect-alpha": [
+          {
+            "role": "main",
+            "argv": [
+              "get",
+              "alpha"
+            ]
+          }
+        ],
+        "create-gamma": [
+          {
+            "role": "main",
+            "argv": [
+              "mk",
+              "gamma",
+              "Gamma",
+              "active",
+              "team=core"
+            ]
+          }
+        ],
+        "update-beta": [
+          {
+            "role": "main",
+            "argv": [
+              "set",
+              "beta",
+              "active",
+              "owner=ops"
+            ]
+          }
+        ],
+        "recover-invalid-create": [
+          {
+            "role": "invalid",
+            "argv": [
+              "mk",
+              "delta"
+            ]
+          },
+          {
+            "role": "recovery",
+            "argv": [
+              "mk",
+              "delta",
+              "Delta",
+              "active",
+              "team=core"
+            ]
+          }
+        ],
+        "delete-beta-safely": [
+          {
+            "role": "preview",
+            "argv": [
+              "rm",
+              "beta",
+              "--preview"
+            ]
+          },
+          {
+            "role": "commit",
+            "argv": [
+              "rm",
+              "beta"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "neutral",
+      "description": "Conventional commands and correct outcomes, but plain output, vague errors, and no preview.",
+      "task_adapters": {
+        "list-resources": [
+          {
+            "role": "discover",
+            "argv": [
+              "--help"
+            ]
+          },
+          {
+            "role": "main",
+            "argv": [
+              "resource",
+              "list"
+            ]
+          }
+        ],
+        "inspect-alpha": [
+          {
+            "role": "main",
+            "argv": [
+              "resource",
+              "show",
+              "alpha"
+            ]
+          }
+        ],
+        "create-gamma": [
+          {
+            "role": "main",
+            "argv": [
+              "resource",
+              "create",
+              "--id",
+              "gamma",
+              "--name",
+              "Gamma",
+              "--status",
+              "active",
+              "--label",
+              "team=core"
+            ]
+          }
+        ],
+        "update-beta": [
+          {
+            "role": "main",
+            "argv": [
+              "resource",
+              "update",
+              "beta",
+              "--status",
+              "active",
+              "--label",
+              "owner=ops"
+            ]
+          }
+        ],
+        "recover-invalid-create": [
+          {
+            "role": "invalid",
+            "argv": [
+              "resource",
+              "create",
+              "--id",
+              "delta",
+              "--status",
+              "active",
+              "--label",
+              "team=core"
+            ]
+          },
+          {
+            "role": "recovery",
+            "argv": [
+              "resource",
+              "create",
+              "--id",
+              "delta",
+              "--name",
+              "Delta",
+              "--status",
+              "active",
+              "--label",
+              "team=core"
+            ]
+          }
+        ],
+        "delete-beta-safely": [
+          {
+            "role": "preview",
+            "argv": [
+              "resource",
+              "delete",
+              "beta",
+              "--dry-run"
+            ]
+          },
+          {
+            "role": "commit",
+            "argv": [
+              "resource",
+              "delete",
+              "beta",
+              "--force"
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "improved",
+      "description": "Discoverable commands, structured output, actionable errors, and safe preview and confirmation.",
+      "task_adapters": {
+        "list-resources": [
+          {
+            "role": "discover",
+            "argv": [
+              "--help"
+            ]
+          },
+          {
+            "role": "main",
+            "argv": [
+              "resource",
+              "list",
+              "--json"
+            ]
+          }
+        ],
+        "inspect-alpha": [
+          {
+            "role": "main",
+            "argv": [
+              "resource",
+              "show",
+              "alpha",
+              "--json"
+            ]
+          }
+        ],
+        "create-gamma": [
+          {
+            "role": "main",
+            "argv": [
+              "resource",
+              "create",
+              "--id",
+              "gamma",
+              "--name",
+              "Gamma",
+              "--status",
+              "active",
+              "--label",
+              "team=core",
+              "--json"
+            ]
+          }
+        ],
+        "update-beta": [
+          {
+            "role": "main",
+            "argv": [
+              "resource",
+              "update",
+              "beta",
+              "--status",
+              "active",
+              "--label",
+              "owner=ops",
+              "--json"
+            ]
+          }
+        ],
+        "recover-invalid-create": [
+          {
+            "role": "invalid",
+            "argv": [
+              "resource",
+              "create",
+              "--id",
+              "delta",
+              "--status",
+              "active",
+              "--label",
+              "team=core",
+              "--json"
+            ]
+          },
+          {
+            "role": "recovery",
+            "argv": [
+              "resource",
+              "create",
+              "--id",
+              "delta",
+              "--name",
+              "Delta",
+              "--status",
+              "active",
+              "--label",
+              "team=core",
+              "--json"
+            ]
+          }
+        ],
+        "delete-beta-safely": [
+          {
+            "role": "preview",
+            "argv": [
+              "resource",
+              "delete",
+              "beta",
+              "--dry-run",
+              "--json"
+            ]
+          },
+          {
+            "role": "commit",
+            "argv": [
+              "resource",
+              "delete",
+              "beta",
+              "--yes",
+              "--json"
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "verification": {
+    "command": "uv run task-packs/resource-lifecycle-v0/verify.py",
+    "claim": "Calibration only. Criteria counts are not Human or Agent scores.",
+    "expected_order": [
+      "degraded",
+      "neutral",
+      "improved"
+    ]
+  }
+}

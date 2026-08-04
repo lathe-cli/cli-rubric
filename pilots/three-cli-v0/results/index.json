@@ -1,0 +1,13 @@
+{
+  "pilot_id": "three-cli-real-pilot-v0",
+  "official_score": false,
+  "accepted_run_id": "three-cli-20260804T043135Z-7e87",
+  "runs": [
+    {
+      "run_id": "three-cli-20260804T043135Z-7e87",
+      "status": "accepted_rehearsal",
+      "reason": "All three subjects completed, evidence validated, and every disposable fixture was absent after cleanup.",
+      "disposition": "pilots/three-cli-v0/results/three-cli-20260804T043135Z-7e87/summary.json"
+    }
+  ]
+}

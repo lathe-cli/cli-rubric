@@ -1,0 +1,11 @@
+{
+  "architecture": "arm64",
+  "cwd": "/Users/x/git/samzong/cli-rubric",
+  "isolation": "exact remote fixture names for gh and awirectl; TemporaryDirectory plus DIFY_CONFIG_DIR for difyctl",
+  "locale": "C.UTF-8",
+  "network": "allowlisted real service endpoints",
+  "os": "macOS 27.0",
+  "run_id": "three-cli-20260804T043135Z-7e87",
+  "shell": "zsh 5.9",
+  "timezone": "America/New_York"
+}
