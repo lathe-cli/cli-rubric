@@ -1,0 +1,614 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/lathe-cli/cli-rubric/main/schemas/v0/profile.schema.json",
+  "title": "CLI Rubric v0 Evaluation Profile",
+  "description": "Experimental conditions for one Human or Agent evaluation.",
+  "type": "object",
+  "required": [
+    "schema_version",
+    "id",
+    "version",
+    "status",
+    "track",
+    "description",
+    "scope",
+    "rubric",
+    "task_pack",
+    "environment",
+    "documentation",
+    "budgets",
+    "protocol",
+    "grader_policy",
+    "safety"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "0.1.0"
+    },
+    "id": {
+      "type": "string",
+      "pattern": "^[a-z][a-z0-9-]{2,63}$"
+    },
+    "version": {
+      "type": "string",
+      "pattern": "^0\\.[0-9]+\\.[0-9]+$"
+    },
+    "status": {
+      "const": "experimental"
+    },
+    "track": {
+      "enum": [
+        "human",
+        "agent"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1
+    },
+    "scope": {
+      "type": "object",
+      "required": [
+        "claim",
+        "cli_class",
+        "capability_domain",
+        "interaction_risk",
+        "setup_boundary"
+      ],
+      "properties": {
+        "claim": {
+          "type": "string",
+          "minLength": 1
+        },
+        "cli_class": {
+          "enum": [
+            "local",
+            "remote",
+            "hybrid"
+          ]
+        },
+        "capability_domain": {
+          "type": "string",
+          "minLength": 1
+        },
+        "interaction_risk": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "read_only",
+              "mutating",
+              "destructive"
+            ]
+          }
+        },
+        "setup_boundary": {
+          "enum": [
+            "preinstalled",
+            "installation_in_scope"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "rubric": {
+      "$ref": "#/$defs/artifactReference"
+    },
+    "task_pack": {
+      "$ref": "#/$defs/artifactReference"
+    },
+    "environment": {
+      "type": "object",
+      "required": [
+        "platforms",
+        "execution_mode",
+        "isolation",
+        "network",
+        "locale",
+        "timezone"
+      ],
+      "properties": {
+        "platforms": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/platform"
+          }
+        },
+        "execution_mode": {
+          "enum": [
+            "interactive",
+            "non_interactive",
+            "mixed"
+          ]
+        },
+        "isolation": {
+          "enum": [
+            "container",
+            "virtual_machine",
+            "temporary_user",
+            "other"
+          ]
+        },
+        "network": {
+          "type": "object",
+          "required": [
+            "mode"
+          ],
+          "properties": {
+            "mode": {
+              "enum": [
+                "disabled",
+                "allowlist"
+              ]
+            },
+            "allowed_hosts": {
+              "type": "array",
+              "uniqueItems": true,
+              "items": {
+                "type": "string",
+                "minLength": 1
+              }
+            }
+          },
+          "additionalProperties": false
+        },
+        "locale": {
+          "type": "string",
+          "minLength": 1
+        },
+        "timezone": {
+          "type": "string",
+          "minLength": 1
+        },
+        "environment_image": {
+          "$ref": "#/$defs/artifactReference"
+        }
+      },
+      "additionalProperties": false
+    },
+    "documentation": {
+      "type": "object",
+      "required": [
+        "policy",
+        "evaluator_assistance",
+        "artifacts"
+      ],
+      "properties": {
+        "policy": {
+          "enum": [
+            "none",
+            "bundled",
+            "public_snapshot",
+            "bundled_and_public_snapshot"
+          ]
+        },
+        "evaluator_assistance": {
+          "enum": [
+            "none",
+            "protocol_only"
+          ]
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/artifactReference"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "budgets": {
+      "type": "object",
+      "required": [
+        "wall_time_seconds",
+        "max_commands"
+      ],
+      "properties": {
+        "wall_time_seconds": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_commands": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_tool_calls": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_input_tokens": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_output_tokens": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "max_cost_usd": {
+          "type": "number",
+          "minimum": 0
+        }
+      },
+      "additionalProperties": false
+    },
+    "protocol": {
+      "type": "object",
+      "required": [
+        "repetitions_per_task",
+        "warmup_trials",
+        "task_order",
+        "trial_reset",
+        "capture",
+        "seed_policy"
+      ],
+      "properties": {
+        "repetitions_per_task": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "warmup_trials": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "task_order": {
+          "enum": [
+            "fixed",
+            "randomized",
+            "counterbalanced"
+          ]
+        },
+        "trial_reset": {
+          "enum": [
+            "clean_fixture",
+            "declared_carryover"
+          ]
+        },
+        "capture": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "commands",
+              "stdin",
+              "stdout",
+              "stderr",
+              "exit_status",
+              "timing",
+              "state_before",
+              "state_after",
+              "observations",
+              "responses"
+            ]
+          }
+        },
+        "seed_policy": {
+          "enum": [
+            "fixed",
+            "recorded_random",
+            "unavailable"
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "grader_policy": {
+      "type": "object",
+      "required": [
+        "deterministic_first",
+        "llm_judge",
+        "double_rate_fraction"
+      ],
+      "properties": {
+        "deterministic_first": {
+          "const": true
+        },
+        "llm_judge": {
+          "enum": [
+            "forbidden",
+            "exception_only"
+          ]
+        },
+        "double_rate_fraction": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "safety": {
+      "type": "object",
+      "required": [
+        "sandbox_required",
+        "fixture_only",
+        "production_credentials",
+        "outbound_network"
+      ],
+      "properties": {
+        "sandbox_required": {
+          "const": true
+        },
+        "fixture_only": {
+          "const": true
+        },
+        "production_credentials": {
+          "const": false
+        },
+        "outbound_network": {
+          "enum": [
+            "disabled",
+            "allowlist"
+          ]
+        },
+        "allowed_hosts": {
+          "type": "array",
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "human": {
+      "type": "object",
+      "required": [
+        "cohort_definition",
+        "minimum_participants",
+        "subject_experience",
+        "study_design",
+        "phases",
+        "consent_required"
+      ],
+      "properties": {
+        "cohort_definition": {
+          "type": "string",
+          "minLength": 1
+        },
+        "minimum_participants": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "subject_experience": {
+          "enum": [
+            "subject_naive",
+            "occasional",
+            "experienced",
+            "mixed"
+          ]
+        },
+        "study_design": {
+          "enum": [
+            "within_subject",
+            "between_subject",
+            "mixed"
+          ]
+        },
+        "phases": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "enum": [
+              "first_use",
+              "repeated_use"
+            ]
+          }
+        },
+        "consent_required": {
+          "const": true
+        }
+      },
+      "additionalProperties": false
+    },
+    "agent": {
+      "type": "object",
+      "required": [
+        "panel",
+        "prompt",
+        "tool_surface",
+        "history_policy"
+      ],
+      "properties": {
+        "panel": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/$defs/agentSystem"
+          }
+        },
+        "prompt": {
+          "$ref": "#/$defs/artifactReference"
+        },
+        "tool_surface": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "history_policy": {
+          "enum": [
+            "clean_per_trial",
+            "declared_carryover"
+          ]
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "allOf": [
+    {
+      "if": {
+        "properties": {
+          "track": {
+            "const": "human"
+          }
+        },
+        "required": [
+          "track"
+        ]
+      },
+      "then": {
+        "required": [
+          "human"
+        ],
+        "not": {
+          "required": [
+            "agent"
+          ]
+        }
+      }
+    },
+    {
+      "if": {
+        "properties": {
+          "track": {
+            "const": "agent"
+          }
+        },
+        "required": [
+          "track"
+        ]
+      },
+      "then": {
+        "required": [
+          "agent"
+        ],
+        "properties": {
+          "budgets": {
+            "type": "object",
+            "required": [
+              "max_tool_calls",
+              "max_input_tokens",
+              "max_output_tokens"
+            ]
+          }
+        },
+        "not": {
+          "required": [
+            "human"
+          ]
+        }
+      }
+    }
+  ],
+  "additionalProperties": false,
+  "$defs": {
+    "artifactReference": {
+      "type": "object",
+      "required": [
+        "uri",
+        "sha256"
+      ],
+      "properties": {
+        "uri": {
+          "type": "string",
+          "minLength": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[a-f0-9]{64}$"
+        },
+        "version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "media_type": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "platform": {
+      "type": "object",
+      "required": [
+        "os",
+        "architecture",
+        "shell"
+      ],
+      "properties": {
+        "os": {
+          "type": "string",
+          "minLength": 1
+        },
+        "architecture": {
+          "type": "string",
+          "minLength": 1
+        },
+        "shell": {
+          "type": "string",
+          "minLength": 1
+        },
+        "terminal": {
+          "type": "string",
+          "minLength": 1
+        }
+      },
+      "additionalProperties": false
+    },
+    "agentSystem": {
+      "type": "object",
+      "required": [
+        "provider",
+        "model",
+        "model_version",
+        "agent",
+        "agent_version",
+        "parameters"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model": {
+          "type": "string",
+          "minLength": 1
+        },
+        "model_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "agent": {
+          "type": "string",
+          "minLength": 1
+        },
+        "agent_version": {
+          "type": "string",
+          "minLength": 1
+        },
+        "parameters": {
+          "type": "object",
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}

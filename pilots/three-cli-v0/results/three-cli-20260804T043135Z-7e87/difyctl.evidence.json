@@ -1,0 +1,663 @@
+{
+  "$schema": "https://raw.githubusercontent.com/lathe-cli/cli-rubric/main/schemas/v0/evidence.schema.json",
+  "actors": [
+    {
+      "agent": "Codex Desktop",
+      "agent_version": "session-unreported",
+      "id": "openai-codex-session",
+      "kind": "agent",
+      "model": "GPT-5",
+      "model_version": "session-unreported",
+      "provider": "OpenAI"
+    }
+  ],
+  "artifacts": [
+    {
+      "byte_length": 7955,
+      "id": "protocol",
+      "media_type": "application/json",
+      "redacted": false,
+      "role": "instruction",
+      "sha256": "f13ff7ee81ea7f663bcd5c0ec40d3bfae17600e1b8bd0344526dd268676d8add",
+      "uri": "pilots/three-cli-v0/protocol.json"
+    },
+    {
+      "byte_length": 3470,
+      "id": "profile",
+      "media_type": "application/json",
+      "redacted": false,
+      "role": "instruction",
+      "sha256": "70f6ef25674f4ce80b75dd6f4b5fc61425cfd8ccbea1e102c30bd7ce95a5bef2",
+      "uri": "pilots/three-cli-v0/agent-profile.json"
+    },
+    {
+      "byte_length": 56528,
+      "id": "runner",
+      "media_type": "text/x-python",
+      "redacted": false,
+      "role": "other",
+      "sha256": "113942fefa1d8d9162bc862482cbed95c66cdab8fa43c7187e57ce46ef691bcc",
+      "uri": "pilots/three-cli-v0/run.py"
+    },
+    {
+      "byte_length": 64481,
+      "id": "observations",
+      "media_type": "application/json",
+      "redacted": true,
+      "role": "observation",
+      "sha256": "86cb1499f461ca4de08f3e1b4de5086e178a569cf8057ea9baa60b731094f1ff",
+      "uri": "pilots/three-cli-v0/results/three-cli-20260804T043135Z-7e87/observations.json"
+    },
+    {
+      "byte_length": 391,
+      "id": "environment",
+      "media_type": "application/json",
+      "redacted": false,
+      "role": "environment",
+      "sha256": "084a9bf3340316feee873d8e33ae08b2a64ef8f9e59894b7cb197ae521fe2ab7",
+      "uri": "pilots/three-cli-v0/results/three-cli-20260804T043135Z-7e87/environment.json"
+    }
+  ],
+  "created_at": "2026-08-04T04:32:14.751003Z",
+  "environment": {
+    "architecture": "arm64",
+    "isolation": "exact remote fixture names for gh and awirectl; TemporaryDirectory plus DIFY_CONFIG_DIR for difyctl",
+    "locale": "C.UTF-8",
+    "manifest_sha256": "084a9bf3340316feee873d8e33ae08b2a64ef8f9e59894b7cb197ae521fe2ab7",
+    "network": "allowlisted real service endpoints",
+    "os": "macOS 27.0",
+    "shell": "zsh 5.9",
+    "terminal": "non-interactive subprocess",
+    "timezone": "America/New_York"
+  },
+  "evaluator": {
+    "conflict_disclosures": [
+      "This run was performed in a maintainer-controlled workspace.",
+      "The result is experimental, unscored, and not independently reproduced."
+    ],
+    "id": "cli-rubric-maintainer-pilot",
+    "relationship": "commissioned"
+  },
+  "integrity": {
+    "all_artifacts_verified": true,
+    "hash_algorithm": "sha256"
+  },
+  "limitations": [
+    "No Human Track participants were run.",
+    "No clean-history Agent trial was run.",
+    "The three capability domains are not directly comparable.",
+    "Preview support is observed as a criterion and is not synthesized by the runner.",
+    "No score, band, ranking, or uncertainty interval is produced."
+  ],
+  "maturity": "experimental",
+  "method": {
+    "graders": [
+      {
+        "media_type": "text/x-python",
+        "sha256": "113942fefa1d8d9162bc862482cbed95c66cdab8fa43c7187e57ce46ef691bcc",
+        "uri": "pilots/three-cli-v0/run.py"
+      }
+    ],
+    "profile": {
+      "media_type": "application/json",
+      "sha256": "70f6ef25674f4ce80b75dd6f4b5fc61425cfd8ccbea1e102c30bd7ce95a5bef2",
+      "uri": "pilots/three-cli-v0/agent-profile.json",
+      "version": "0.1.0"
+    },
+    "protocol_deviations": [
+      {
+        "description": "The acting agent inspected every subject before execution.",
+        "effect": "Discovery and first-use behavior are not valid Agent Core observations.",
+        "severity": "major"
+      },
+      {
+        "description": "Only one model session and one repetition were used.",
+        "effect": "No repeatability, uncertainty, or generalized Agent claim is available.",
+        "severity": "major"
+      },
+      {
+        "description": "The runner executed adapters selected during protocol design.",
+        "effect": "The run tests instrumentation and CLI behavior, not autonomous command selection.",
+        "severity": "major"
+      },
+      {
+        "description": "GitHub and Awire used production-scoped credentials against exact disposable fixtures.",
+        "effect": "The run violates the profile safety requirement and must remain unscored.",
+        "severity": "major"
+      }
+    ],
+    "rubric": {
+      "media_type": "text/markdown",
+      "sha256": "ee4865b8cd19f6542f57053a24af2e46c8ab88498a925c3a349c83704dafe0a1",
+      "uri": "docs/RUBRIC-v0.md",
+      "version": "0.1.0"
+    },
+    "runner": {
+      "media_type": "text/x-python",
+      "sha256": "113942fefa1d8d9162bc862482cbed95c66cdab8fa43c7187e57ce46ef691bcc",
+      "uri": "pilots/three-cli-v0/run.py"
+    },
+    "task_pack": {
+      "media_type": "application/json",
+      "sha256": "f13ff7ee81ea7f663bcd5c0ec40d3bfae17600e1b8bd0344526dd268676d8add",
+      "uri": "pilots/three-cli-v0/protocol.json",
+      "version": "0.1.0"
+    }
+  },
+  "redactions": [
+    {
+      "effect_on_reproducibility": "Outcome and exact fixture state remain reproducible; unrelated resource metadata and secret values are unavailable.",
+      "reason": "Prevent credential, signing-secret, and unrelated resource disclosure.",
+      "scope": "Secret-like JSON fields and token-shaped strings; unrelated Awire channel list entries."
+    }
+  ],
+  "run_id": "three-cli-20260804T043135Z-7e87-difyctl",
+  "schema_version": "0.1.0",
+  "score": {
+    "status": "unscored",
+    "unscored_reason": "Protocol rehearsal with one exposed agent session, one repetition, fixed adapters, and production-scoped credential deviations."
+  },
+  "subject": {
+    "artifact_sha256": "4ef9a71c08aff5f981b3ba933165dd62b439cdf3629989d403157e055078a2b7",
+    "install_method": "preinstalled binary at /Users/x/.local/bin/difyctl",
+    "name": "difyctl",
+    "source_revision": "3aa26fb6374bbd47e5469f7d7cc25f3e0075a60c",
+    "source_uri": "local-installed:///Users/x/.local/bin/difyctl",
+    "version": "0.1.0-alpha"
+  },
+  "track": "agent",
+  "trials": [
+    {
+      "actor_id": "openai-codex-session",
+      "attempt": 1,
+      "commands": [
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "path"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 256,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 1,
+          "started_at": "2026-08-04T04:31:49.895859Z",
+          "state_changed": false,
+          "stderr_ref": "observations",
+          "stdin_ref": null,
+          "stdout_ref": "observations",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "set",
+            "--help"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 253,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 2,
+          "started_at": "2026-08-04T04:31:50.151965Z",
+          "state_changed": false,
+          "stderr_ref": "observations",
+          "stdin_ref": null,
+          "stdout_ref": "observations",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "unset",
+            "--help"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 254,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 3,
+          "started_at": "2026-08-04T04:31:50.405203Z",
+          "state_changed": false,
+          "stderr_ref": "observations",
+          "stdin_ref": null,
+          "stdout_ref": "observations",
+          "termination": "exit"
+        }
+      ],
+      "critical_events": [],
+      "duration_ms": 763,
+      "id": "difyctl-discover-mutation-contract-1",
+      "measurements": [
+        {
+          "construct_id": "A2",
+          "evidence_refs": [
+            "observations"
+          ],
+          "measure_id": "discovery_exit_zero",
+          "normalized_value": 1,
+          "raw_value": true,
+          "source": "deterministic",
+          "unit": "boolean"
+        },
+        {
+          "construct_id": "A2",
+          "evidence_refs": [
+            "observations"
+          ],
+          "measure_id": "mutation_path_identified",
+          "normalized_value": 1,
+          "raw_value": true,
+          "source": "deterministic",
+          "unit": "boolean"
+        },
+        {
+          "construct_id": "A2",
+          "evidence_refs": [
+            "observations"
+          ],
+          "measure_id": "destructive_path_identified",
+          "normalized_value": 1,
+          "raw_value": true,
+          "source": "deterministic",
+          "unit": "boolean"
+        }
+      ],
+      "outcome": {
+        "correctness": 1,
+        "grader_ref": "observations",
+        "status": "success"
+      },
+      "protocol_deviations": [],
+      "started_at": "2026-08-04T04:31:49.895859Z",
+      "task_id": "discover-mutation-contract",
+      "valid": true
+    },
+    {
+      "actor_id": "openai-codex-session",
+      "attempt": 1,
+      "commands": [
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "get",
+            "defaults.limit"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 248,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 4,
+          "started_at": "2026-08-04T04:31:50.659637Z",
+          "state_changed": false,
+          "stderr_ref": "observations",
+          "stdin_ref": null,
+          "stdout_ref": "observations",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "set",
+            "defaults.limit",
+            "not-an-integer"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 256,
+          "exit_code": 2,
+          "redacted": false,
+          "sequence": 5,
+          "started_at": "2026-08-04T04:31:50.907997Z",
+          "state_changed": false,
+          "stderr_ref": "observations",
+          "stdin_ref": null,
+          "stdout_ref": "observations",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "get",
+            "defaults.limit"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 255,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 6,
+          "started_at": "2026-08-04T04:31:51.163942Z",
+          "state_changed": false,
+          "stderr_ref": "observations",
+          "stdin_ref": null,
+          "stdout_ref": "observations",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "set",
+            "defaults.limit",
+            "37"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 266,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 7,
+          "started_at": "2026-08-04T04:31:51.418608Z",
+          "state_changed": true,
+          "stderr_ref": "observations",
+          "stdin_ref": null,
+          "stdout_ref": "observations",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "get",
+            "defaults.limit"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 259,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 8,
+          "started_at": "2026-08-04T04:31:51.684215Z",
+          "state_changed": false,
+          "stderr_ref": "observations",
+          "stdin_ref": null,
+          "stdout_ref": "observations",
+          "termination": "exit"
+        }
+      ],
+      "critical_events": [],
+      "duration_ms": 1284,
+      "id": "difyctl-reject-invalid-and-recover-1",
+      "measurements": [
+        {
+          "construct_id": "A4",
+          "evidence_refs": [
+            "observations"
+          ],
+          "measure_id": "invalid_nonzero",
+          "normalized_value": 1,
+          "raw_value": true,
+          "source": "deterministic",
+          "unit": "boolean"
+        },
+        {
+          "construct_id": "A3",
+          "evidence_refs": [
+            "observations"
+          ],
+          "measure_id": "invalid_preserves_state",
+          "normalized_value": 1,
+          "raw_value": true,
+          "source": "deterministic",
+          "unit": "boolean"
+        },
+        {
+          "construct_id": "A4",
+          "evidence_refs": [
+            "observations"
+          ],
+          "measure_id": "recovery_success",
+          "normalized_value": 1,
+          "raw_value": true,
+          "source": "deterministic",
+          "unit": "boolean"
+        },
+        {
+          "construct_id": "A3",
+          "evidence_refs": [
+            "observations"
+          ],
+          "measure_id": "created_state_verified",
+          "normalized_value": 1,
+          "raw_value": true,
+          "source": "deterministic",
+          "unit": "boolean"
+        },
+        {
+          "construct_id": "A1",
+          "evidence_refs": [
+            "observations"
+          ],
+          "measure_id": "actionable_error",
+          "normalized_value": 1,
+          "raw_value": true,
+          "source": "deterministic",
+          "unit": "boolean"
+        }
+      ],
+      "outcome": {
+        "correctness": 1,
+        "grader_ref": "observations",
+        "status": "success"
+      },
+      "protocol_deviations": [],
+      "started_at": "2026-08-04T04:31:50.659637Z",
+      "task_id": "reject-invalid-and-recover",
+      "valid": true
+    },
+    {
+      "actor_id": "openai-codex-session",
+      "attempt": 1,
+      "commands": [
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "unset",
+            "defaults.limit",
+            "--dry-run"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 254,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 9,
+          "started_at": "2026-08-04T04:31:51.942920Z",
+          "state_changed": false,
+          "stderr_ref": "observations",
+          "stdin_ref": null,
+          "stdout_ref": "observations",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "get",
+            "defaults.limit"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 257,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 10,
+          "started_at": "2026-08-04T04:31:52.197503Z",
+          "state_changed": false,
+          "stderr_ref": "observations",
+          "stdin_ref": null,
+          "stdout_ref": "observations",
+          "termination": "exit"
+        }
+      ],
+      "critical_events": [],
+      "duration_ms": 511,
+      "id": "difyctl-preview-destructive-change-1",
+      "measurements": [
+        {
+          "construct_id": "A4",
+          "evidence_refs": [
+            "observations"
+          ],
+          "measure_id": "preview_supported",
+          "normalized_value": 0,
+          "raw_value": false,
+          "source": "deterministic",
+          "unit": "boolean"
+        },
+        {
+          "construct_id": "A3",
+          "evidence_refs": [
+            "observations"
+          ],
+          "measure_id": "preview_preserves_state",
+          "normalized_value": 1,
+          "raw_value": true,
+          "source": "deterministic",
+          "unit": "boolean"
+        }
+      ],
+      "outcome": {
+        "correctness": 1,
+        "grader_ref": "observations",
+        "status": "success"
+      },
+      "protocol_deviations": [],
+      "started_at": "2026-08-04T04:31:51.942920Z",
+      "task_id": "preview-destructive-change",
+      "valid": true
+    },
+    {
+      "actor_id": "openai-codex-session",
+      "attempt": 1,
+      "commands": [
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "unset",
+            "defaults.limit",
+            "--yes"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 250,
+          "exit_code": 1,
+          "redacted": false,
+          "sequence": 11,
+          "started_at": "2026-08-04T04:31:52.454247Z",
+          "state_changed": false,
+          "stderr_ref": "observations",
+          "stdin_ref": null,
+          "stdout_ref": "observations",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "get",
+            "defaults.limit"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 254,
+          "exit_code": 0,
+          "redacted": true,
+          "sequence": 12,
+          "started_at": "2026-08-04T04:31:52.704766Z",
+          "state_changed": false,
+          "stderr_ref": "observations",
+          "stdin_ref": null,
+          "stdout_ref": "observations",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "unset",
+            "defaults.limit"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 259,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 13,
+          "started_at": "2026-08-04T04:31:52.958496Z",
+          "state_changed": true,
+          "stderr_ref": "observations",
+          "stdin_ref": null,
+          "stdout_ref": "observations",
+          "termination": "exit"
+        },
+        {
+          "argv": [
+            "difyctl",
+            "config",
+            "get",
+            "defaults.limit"
+          ],
+          "cwd": "/Users/x/git/samzong/cli-rubric",
+          "duration_ms": 248,
+          "exit_code": 0,
+          "redacted": false,
+          "sequence": 14,
+          "started_at": "2026-08-04T04:31:53.217250Z",
+          "state_changed": false,
+          "stderr_ref": "observations",
+          "stdin_ref": null,
+          "stdout_ref": "observations",
+          "termination": "exit"
+        }
+      ],
+      "critical_events": [],
+      "duration_ms": 1011,
+      "id": "difyctl-confirm-and-clean-up-1",
+      "measurements": [
+        {
+          "construct_id": "A4",
+          "evidence_refs": [
+            "observations"
+          ],
+          "measure_id": "cli_confirmation_required",
+          "normalized_value": 0,
+          "raw_value": false,
+          "source": "deterministic",
+          "unit": "boolean"
+        },
+        {
+          "construct_id": "A4",
+          "evidence_refs": [
+            "observations"
+          ],
+          "measure_id": "delete_success",
+          "normalized_value": 1,
+          "raw_value": true,
+          "source": "deterministic",
+          "unit": "boolean"
+        },
+        {
+          "construct_id": "A3",
+          "evidence_refs": [
+            "observations"
+          ],
+          "measure_id": "deleted_state_verified",
+          "normalized_value": 1,
+          "raw_value": true,
+          "source": "deterministic",
+          "unit": "boolean"
+        }
+      ],
+      "outcome": {
+        "correctness": 1,
+        "grader_ref": "observations",
+        "status": "success"
+      },
+      "protocol_deviations": [],
+      "started_at": "2026-08-04T04:31:52.454247Z",
+      "task_id": "confirm-and-clean-up",
+      "valid": true
+    }
+  ]
+}

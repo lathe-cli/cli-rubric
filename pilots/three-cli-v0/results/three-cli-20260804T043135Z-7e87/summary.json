@@ -1,0 +1,97 @@
+{
+  "all_fixtures_absent": true,
+  "evidence_dir": "pilots/three-cli-v0/results/three-cli-20260804T043135Z-7e87",
+  "evidence_manifests": [
+    "pilots/three-cli-v0/results/three-cli-20260804T043135Z-7e87/gh.evidence.json",
+    "pilots/three-cli-v0/results/three-cli-20260804T043135Z-7e87/difyctl.evidence.json",
+    "pilots/three-cli-v0/results/three-cli-20260804T043135Z-7e87/awirectl.evidence.json"
+  ],
+  "official_score": false,
+  "result_kind": "real_cli_pilot_rehearsal",
+  "run_id": "three-cli-20260804T043135Z-7e87",
+  "score_status": "unscored",
+  "status": "pass",
+  "subjects": {
+    "awirectl": {
+      "cleanup_verified": true,
+      "criteria": {
+        "confirm-and-clean-up": {
+          "cli_confirmation_required": false,
+          "delete_success": true,
+          "deleted_state_verified": true
+        },
+        "discover-mutation-contract": {
+          "destructive_path_identified": true,
+          "discovery_exit_zero": true,
+          "mutation_path_identified": true
+        },
+        "preview-destructive-change": {
+          "preview_preserves_state": true,
+          "preview_supported": false
+        },
+        "reject-invalid-and-recover": {
+          "actionable_error": true,
+          "created_state_verified": true,
+          "invalid_nonzero": true,
+          "invalid_preserves_state": true,
+          "recovery_success": true
+        }
+      },
+      "status": "complete"
+    },
+    "difyctl": {
+      "cleanup_verified": true,
+      "criteria": {
+        "confirm-and-clean-up": {
+          "cli_confirmation_required": false,
+          "delete_success": true,
+          "deleted_state_verified": true
+        },
+        "discover-mutation-contract": {
+          "destructive_path_identified": true,
+          "discovery_exit_zero": true,
+          "mutation_path_identified": true
+        },
+        "preview-destructive-change": {
+          "preview_preserves_state": true,
+          "preview_supported": false
+        },
+        "reject-invalid-and-recover": {
+          "actionable_error": true,
+          "created_state_verified": true,
+          "invalid_nonzero": true,
+          "invalid_preserves_state": true,
+          "recovery_success": true
+        }
+      },
+      "status": "complete"
+    },
+    "gh": {
+      "cleanup_verified": true,
+      "criteria": {
+        "confirm-and-clean-up": {
+          "cli_confirmation_required": true,
+          "delete_success": true,
+          "deleted_state_verified": true
+        },
+        "discover-mutation-contract": {
+          "destructive_path_identified": true,
+          "discovery_exit_zero": true,
+          "mutation_path_identified": true
+        },
+        "preview-destructive-change": {
+          "preview_preserves_state": true,
+          "preview_supported": false
+        },
+        "reject-invalid-and-recover": {
+          "actionable_error": true,
+          "created_state_verified": true,
+          "invalid_nonzero": true,
+          "invalid_preserves_state": true,
+          "recovery_success": true
+        }
+      },
+      "status": "complete"
+    }
+  }
+}

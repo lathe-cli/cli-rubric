@@ -15,6 +15,15 @@ separately and never merged.
 
 Read the [founding vision](docs/VISION.md).
 
+## Rubric v0
+
+Review the experimental [Rubric v0 design](docs/RUBRIC-v0.md).
+
+## Experiments
+
+- [Resource lifecycle task pack](task-packs/resource-lifecycle-v0/task-pack.json)
+- [Three-CLI pilot v0](pilots/three-cli-v0/README.md)
+
 ## Founding principles
 
 - Evidence before scores.
