@@ -23,6 +23,7 @@ Review the experimental [Rubric v0 design](docs/RUBRIC-v0.md).
 
 - [Resource lifecycle task pack](task-packs/resource-lifecycle-v0/task-pack.json)
 - [Three-CLI pilot v0](pilots/three-cli-v0/README.md)
+- [Agent known-groups validation v0](experiments/agent-known-groups-v0/README.md)
 
 ## Founding principles
 

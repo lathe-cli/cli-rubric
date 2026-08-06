@@ -1,0 +1,295 @@
+{
+  "schema_version": "0.1.0",
+  "id": "agent-known-groups-v0",
+  "version": "0.2.0",
+  "status": "experimental",
+  "result_kind": "agent_known_groups_qualification",
+  "official_score": false,
+  "claim": "Qualify a blind, actor-in-the-loop Agent evaluation path and deterministic score reconstruction before any formal known-groups run.",
+  "references": {
+    "rubric": {
+      "uri": "docs/RUBRIC-v0.md",
+      "sha256": "ee4865b8cd19f6542f57053a24af2e46c8ab88498a925c3a349c83704dafe0a1",
+      "version": "0.1.0",
+      "media_type": "text/markdown"
+    },
+    "task_pack": {
+      "uri": "task-packs/resource-lifecycle-v0/task-pack.json",
+      "sha256": "c26bbf8ac9af595243a18fb9891deb049d2616988e86795273e3d9572bd57807",
+      "version": "0.1.0",
+      "media_type": "application/json"
+    }
+  },
+  "real_cli_scope": {
+    "subjects": [
+      "gh",
+      "difyctl",
+      "awirectl"
+    ],
+    "role": "Existing ecological checks only. They are not known-groups calibration subjects and are not directly ranked."
+  },
+  "subjects": {
+    "source": "task-packs/resource-lifecycle-v0/task-pack.json#reference_variants",
+    "variants": [
+      "degraded",
+      "neutral",
+      "improved"
+    ],
+    "identity_policy": "The actor sees the same executable name and is not told the variant identifier."
+  },
+  "phases": {
+    "qualification": {
+      "purpose": "Find harness, isolation, capture, grading, and reconstruction defects.",
+      "actor_systems": 1,
+      "repetitions_per_model_task": 1,
+      "tasks": [
+        "list-resources",
+        "recover-invalid-create",
+        "delete-beta-safely"
+      ],
+      "variants": [
+        "degraded",
+        "neutral",
+        "improved"
+      ],
+      "planned_trials": 9,
+      "discard_results": true,
+      "score_status": "unscored"
+    },
+    "frozen_run": {
+      "purpose": "Test the Agent half of V2 known groups and V4 repeatability.",
+      "actor_systems": 3,
+      "minimum_independent_model_families": 3,
+      "repetitions_per_model_task": 10,
+      "tasks": "all six resource-lifecycle-v0 tasks",
+      "variants": [
+        "degraded",
+        "neutral",
+        "improved"
+      ],
+      "planned_trials": 540,
+      "requires_separate_cost_authorization": true,
+      "requires_external_protocol_review": true,
+      "requires_held_out_variants": true
+    }
+  },
+  "blinding": {
+    "clean_history_per_trial": true,
+    "fixed_executable_name": "subject",
+    "variant_in_prompt": false,
+    "private_command_adapters": false,
+    "actor_may_use": [
+      "the task intent",
+      "the executable",
+      "bundled help exposed by the executable"
+    ],
+    "actor_may_not_use": [
+      "the task-pack manifest",
+      "reference variant identifiers",
+      "the wrapper source",
+      "environment inspection",
+      "network access"
+    ],
+    "violation_effect": "The trial is invalid and remains visible in the evidence bundle."
+  },
+  "trial_classification": {
+    "invalid_and_excluded": [
+      "commands outside the blind subject surface",
+      "actor harness noncompletion"
+    ],
+    "valid_failed_outcome": [
+      "subject invocation budget exceeded",
+      "agent tool-call budget exceeded",
+      "required actor response shape missing"
+    ],
+    "diagnostic_only": [
+      "provider token usage missing",
+      "provider token reporting threshold exceeded"
+    ],
+    "projection_policy": "Only integrity-invalid trials are excluded. Actor outcome failures remain in the projection."
+  },
+  "dimensions": {
+    "A1": {
+      "weight": 0.4,
+      "measures": {
+        "task_completion": {
+          "weight": 0.6,
+          "normalization": {
+            "kind": "binary"
+          },
+          "tasks": "all"
+        },
+        "result_correctness": {
+          "weight": 0.4,
+          "normalization": {
+            "kind": "binary"
+          },
+          "tasks": "all"
+        }
+      }
+    },
+    "A2": {
+      "weight": 0.2,
+      "measures": {
+        "capability_selection": {
+          "weight": 0.35,
+          "normalization": {
+            "kind": "binary"
+          },
+          "tasks": "all"
+        },
+        "first_valid_invocation": {
+          "weight": 0.35,
+          "normalization": {
+            "kind": "binary"
+          },
+          "tasks": "all"
+        },
+        "unsupported_guesses": {
+          "weight": 0.3,
+          "normalization": {
+            "kind": "cost",
+            "target": 0,
+            "limit": 3,
+            "unit": "subject invocations"
+          },
+          "tasks": "all"
+        }
+      }
+    },
+    "A3": {
+      "weight": 0.15,
+      "measures": {
+        "parse_success": {
+          "weight": 0.35,
+          "normalization": {
+            "kind": "binary"
+          },
+          "tasks": "all"
+        },
+        "outcome_error_interpretation": {
+          "weight": 0.4,
+          "normalization": {
+            "kind": "binary"
+          },
+          "tasks": "all"
+        },
+        "state_verification": {
+          "weight": 0.25,
+          "normalization": {
+            "kind": "binary"
+          },
+          "tasks": "all"
+        }
+      }
+    },
+    "A4": {
+      "weight": 0.15,
+      "measures": {
+        "invalid_input_repair": {
+          "weight": 0.35,
+          "normalization": {
+            "kind": "binary"
+          },
+          "tasks": [
+            "recover-invalid-create"
+          ]
+        },
+        "partial_failure_recovery": {
+          "weight": 0.35,
+          "normalization": {
+            "kind": "binary"
+          },
+          "tasks": []
+        },
+        "safe_change_behavior": {
+          "weight": 0.3,
+          "normalization": {
+            "kind": "binary"
+          },
+          "tasks": [
+            "delete-beta-safely"
+          ]
+        }
+      }
+    },
+    "A5": {
+      "weight": 0.1,
+      "measures": {
+        "tool_calls": {
+          "weight": 0.4,
+          "normalization": {
+            "kind": "cost",
+            "target": "improved reference adapter count",
+            "limit": "task budget max_commands",
+            "unit": "command executions"
+          },
+          "tasks": "all"
+        },
+        "cli_to_agent_context": {
+          "weight": 0.3,
+          "normalization": {
+            "kind": "cost",
+            "target": 4096,
+            "limit": 32768,
+            "unit": "UTF-8 bytes",
+            "observation": "Sum of stdout and stderr bytes from subject invocations."
+          },
+          "tasks": "all"
+        },
+        "elapsed_time": {
+          "weight": 0.3,
+          "normalization": {
+            "kind": "cost",
+            "target": "25 percent of task wall-time budget",
+            "limit": "task wall-time budget",
+            "unit": "seconds"
+          },
+          "tasks": "all"
+        }
+      }
+    }
+  },
+  "analysis": {
+    "qualification_projection": "Diagnostic only. Reconstruct covered dimensions and report coverage; never emit a CLI Rubric score or band.",
+    "known_groups_hypothesis": "improved > neutral > degraded",
+    "frozen_run_v2_target": "The 95% interval for improved minus degraded excludes zero.",
+    "frozen_run_v4_targets": {
+      "score_icc_minimum": 0.75,
+      "band_agreement_minimum": 0.8
+    },
+    "aggregation_order": [
+      "average valid repetitions for each actor and task",
+      "average actors within each task",
+      "average applicable tasks within each measure",
+      "combine measures within dimensions",
+      "combine dimensions"
+    ]
+  },
+  "qualification_gates": {
+    "official_score_forbidden": true,
+    "committed_results_forbidden": true,
+    "all_fixtures_absent": true,
+    "semantic_reconstruction_required": true,
+    "all_trials_valid": true,
+    "known_groups_order_required": true,
+    "full_run_blocked_until": [
+      "external content and protocol review",
+      "a held-out task and fixture policy",
+      "coverage for partial_failure_recovery or a preregistered scope change",
+      "three concrete independent model families",
+      "separate authorization for 540 trials"
+    ]
+  },
+  "known_gaps": [
+    "The current task pack has no task for partial_failure_recovery, so full A4 coverage is impossible.",
+    "The qualification wrapper is inspectable; reading it invalidates a trial but blinding is not cryptographically enforced.",
+    "The configured Codex model version may be unavailable from the local CLI event stream.",
+    "Qualification variants are calibration artifacts and cannot serve as held-out evidence."
+  ],
+  "failure_policy": {
+    "qualification_failure": "Fix the harness or protocol, increment the affected artifact version, and rerun qualification.",
+    "frozen_run_failure": "Do not tune against held-out outcomes. Publish the failure and create a new version with new held-out material.",
+    "no_averaging_away": true
+  }
+}

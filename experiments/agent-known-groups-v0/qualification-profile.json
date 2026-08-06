@@ -1,0 +1,134 @@
+{
+  "$schema": "https://raw.githubusercontent.com/lathe-cli/cli-rubric/main/schemas/v0/profile.schema.json",
+  "schema_version": "0.1.0",
+  "id": "agent-known-groups-qualification-v0",
+  "version": "0.2.0",
+  "status": "experimental",
+  "track": "agent",
+  "description": "Disposable single-system qualification for the blind Agent known-groups harness. Command limits define task failure; provider token limits are cost-reporting thresholds. Results are always unscored.",
+  "scope": {
+    "claim": "Test clean-history execution, isolation, capture, deterministic grading, and score reconstruction. Do not estimate Agent performance or validate known-groups ordering.",
+    "cli_class": "local",
+    "capability_domain": "synthetic resource lifecycle",
+    "interaction_risk": [
+      "read_only",
+      "mutating",
+      "destructive"
+    ],
+    "setup_boundary": "preinstalled"
+  },
+  "rubric": {
+    "uri": "docs/RUBRIC-v0.md",
+    "sha256": "ee4865b8cd19f6542f57053a24af2e46c8ab88498a925c3a349c83704dafe0a1",
+    "version": "0.1.0",
+    "media_type": "text/markdown"
+  },
+  "task_pack": {
+    "uri": "task-packs/resource-lifecycle-v0/task-pack.json",
+    "sha256": "c26bbf8ac9af595243a18fb9891deb049d2616988e86795273e3d9572bd57807",
+    "version": "0.1.0",
+    "media_type": "application/json"
+  },
+  "environment": {
+    "platforms": [
+      {
+        "os": "macOS 27.0",
+        "architecture": "arm64",
+        "shell": "zsh 5.9",
+        "terminal": "non-interactive Codex CLI"
+      }
+    ],
+    "execution_mode": "non_interactive",
+    "isolation": "other",
+    "network": {
+      "mode": "allowlist",
+      "allowed_hosts": [
+        "api.openai.com",
+        "chatgpt.com"
+      ]
+    },
+    "locale": "C.UTF-8",
+    "timezone": "America/New_York"
+  },
+  "documentation": {
+    "policy": "bundled",
+    "evaluator_assistance": "protocol_only",
+    "artifacts": [
+      {
+        "uri": "experiments/agent-known-groups-v0/protocol.json",
+        "sha256": "cba8a092b0089822a8c28fcf4596a2ce1270df63822ec4c6a8bc29ab4ebaf493",
+        "version": "0.2.0",
+        "media_type": "application/json"
+      }
+    ]
+  },
+  "budgets": {
+    "wall_time_seconds": 120,
+    "max_commands": 8,
+    "max_tool_calls": 12,
+    "max_input_tokens": 200000,
+    "max_output_tokens": 20000
+  },
+  "protocol": {
+    "repetitions_per_task": 1,
+    "warmup_trials": 0,
+    "task_order": "fixed",
+    "trial_reset": "clean_fixture",
+    "capture": [
+      "commands",
+      "stdout",
+      "stderr",
+      "exit_status",
+      "timing",
+      "state_before",
+      "state_after",
+      "observations",
+      "responses"
+    ],
+    "seed_policy": "unavailable"
+  },
+  "grader_policy": {
+    "deterministic_first": true,
+    "llm_judge": "forbidden",
+    "double_rate_fraction": 0
+  },
+  "safety": {
+    "sandbox_required": true,
+    "fixture_only": true,
+    "production_credentials": false,
+    "outbound_network": "allowlist",
+    "allowed_hosts": [
+      "api.openai.com",
+      "chatgpt.com"
+    ]
+  },
+  "agent": {
+    "panel": [
+      {
+        "provider": "OpenAI",
+        "model": "configured-default-unreported",
+        "model_version": "unreported",
+        "agent": "Codex CLI",
+        "agent_version": "0.146.0",
+        "parameters": {
+          "ephemeral": true,
+          "ignore_user_config": true,
+          "sandbox": "workspace-write",
+          "subject_shell_network": false,
+          "repetitions": 1
+        }
+      }
+    ],
+    "prompt": {
+      "uri": "experiments/agent-known-groups-v0/protocol.json",
+      "sha256": "cba8a092b0089822a8c28fcf4596a2ce1270df63822ec4c6a8bc29ab4ebaf493",
+      "version": "0.2.0",
+      "media_type": "application/json"
+    },
+    "tool_surface": [
+      "Codex CLI command execution",
+      "experiment subject wrapper"
+    ],
+    "history_policy": "clean_per_trial"
+  }
+}
